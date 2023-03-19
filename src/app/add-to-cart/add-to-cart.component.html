@@ -1,0 +1,105 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-3 ">
+            <div class="card" style="border: none;">
+                <div class="card-body p-4">
+
+                    <div class="pb-4">
+                        <h4 class="pb-2">{{'buy_all' | translate}}</h4>
+                        <button style="width: 100%;" data-toggle="modal" data-target="#exampleModal" class="btn btn-success" (click)="modal()">{{'Buy' | translate}}</button>
+                    </div>
+
+                    <div>
+                        <h4 class="pb-2">{{'remove_all' | translate}}</h4>
+                        <button style="width: 100%;" class="btn btn-danger d-flex alingn-items-center justify-content-center" (click)="removeAll()"><span class="material-symbols-outlined">
+                            delete
+                            </span></button>
+                    </div>
+                    <div class="d-flex mt-4">
+                        <h5>{{'sum' | translate}}</h5>
+                        <h5 class="text-danger">{{': ' + sum2 + ' $'}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4" style="border: none;">
+                
+                <div class="card-body " >
+                    <h5 class="pb-2">{{'history' | translate}}</h5>
+                    <div *ngFor="let i of history | paginate: {id: 'pagination1', itemsPerPage: 3, currentPage: t }; let g = index">
+                        <div class="row">
+                            <div class="col-4">
+
+                                <img
+                                style="width: 30px;height: 30px;"
+                                [src]="i.img"
+                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                            </div>
+                            <div class="col-4">
+                                <p  style="font-weight: bold;">{{i.name}}</p>
+                            </div>
+                            <div class="col-4">
+                                <p  style="font-weight: bold;">{{i.Price + ' $'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <pagination-controls id="pagination1" style="margin-left: -20px;"  (pageChange)="t = $event"></pagination-controls>
+
+            </div>
+        </div>
+        <div class="col-9">
+            <div  class="card rounded-3 mb-4" style="border: none;">
+                <div style="height: 550px" class="card-body" >
+                  <div *ngFor="let i of arr  | paginate: {id: 'pagination2', itemsPerPage: 3, currentPage: p }; let g = index" class="row d-flex justify-content-between align-items-center  p-4">
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <img
+                        [src]="i.img"
+                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <p class="lead fw-normal mb-2">{{i.name}}</p>
+                      <p><span class="text-muted">{{i.description}}</span></p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h5 class="mb-0">${{i.Price}}</h5>
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <button (click)="remove(g)" class="btn btn-light"><span class="material-symbols-outlined text-danger">
+                            delete
+                            </span></button>            </div>
+                  </div>
+                </div>
+                <pagination-controls id="pagination2" *ngIf="this.arr?.length > 0" class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+
+              </div>
+              
+        </div>
+    </div>
+
+</div>
+<div *ngIf="succesMsg" class="alert alert-success d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'Success' | translate}}</span>
+</div>
+<div *ngIf="dangerMsg" class="alert alert-danger d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'not_enough' | translate}}</span>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{'Buy' | translate}}</h5>
+          <button type="button" (click)="success = false" class="close btn" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h4 class="d-flex justify-content-center" style="text-align: center;">{{'are_you_sure' | translate}}</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"(click)="success = false" data-dismiss="modal">{{'close' | translate}}</button>
+          <button type="button" class="btn btn-primary" (click)="buyAll()">{{'save_changes' | translate}}</button>
+        </div>
+      </div>
+    </div>
+</div>

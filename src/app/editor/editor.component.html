@@ -1,0 +1,242 @@
+<div class="container">
+    <div >
+        <div class="mt-4">
+            <div class="d-flex" style="gap:10px">
+                <a class="btn btn-light" [ngClass]="reg ? 'bg-dark text-white' : ''" (click)="reg = true;table = false">{{'store_reg' | translate}}</a>
+                <a class="btn btn-light" [ngClass]="table ? 'bg-dark text-white' : ''" (click)="reg = false;table = true">{{'table' | translate}}</a>
+            </div>
+            <div class="card t p-4" *ngIf="reg">
+              <div class="row">
+
+                <h4 class="col-10">{{'store_reg' | translate}}</h4>
+                <button class="btn btn-dark col-2" routerLink="/info">{{'back' | translate}}</button>
+              </div>
+                <div class="card-body" [formGroup]="form">
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'name_en' | translate}}</span>
+                            </label>
+                            <input class="form-control" formControlName="name" type="text">
+                        </div>
+                        <div class="col d-flex flex-column mb-2 w-100">
+                            <label >
+                                <span>{{'name_geo' | translate}}</span>
+                            </label>
+                            <input class="form-control" formControlName="name_geo" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'email' | translate}}</span>
+                            </label>
+                            <input class="form-control" formControlName="emp_email" placeholder="@ibsu.edu.ge" type="text">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'password' | translate}}</span>
+                            </label>
+                            <input class="form-control" formControlName="password" type="text">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                      <div class="col d-flex flex-column mb-2 w-100" >
+                          <label >
+                              <span>{{'summery_en' | translate}}</span>
+                          </label>
+                          <input class="form-control" formControlName="summery_en" type="text">
+                      </div>
+                      <div class="col d-flex flex-column mb-2 w-100" >
+                        <label >
+                            <span>{{'summery_geo' | translate}}</span>
+                        </label>
+                        <input class="form-control" formControlName="summery_geo" type="text">
+                    </div>
+                    </div>
+                    <div class="col d-flex flex-column mb-2 w-100" >
+                      <label >
+                          <span>{{'category' | translate}}</span>
+                      </label>
+                      <select  formControlName="category" class="form-select" aria-label="Default select example">
+                        <option *ngFor="let i of categ"  [value]="i">{{i}}</option>
+                        
+                      </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" (click)="addStore()">{{'add' | translate}}</button>
+                    </div>
+                    <div class="row">
+
+                    </div>
+            </div>    
+        </div>
+        <div class="card t p-4" *ngIf="table">
+            <div class="row">
+
+              <h4 class="col-10">{{'store_table' | translate}}</h4>
+              <button class="btn btn-dark  col-2" routerLink="/info">{{'back' | translate}}</button>
+            </div>
+            <div class="card-body" [formGroup]="form">
+              <div class="mt-4">
+                        <div class="input-group mb-3">
+                            <input [formControl]="filterid" type="text"  class="form-control rounded"  placeholder="ID" >
+                            <button type="button"(click)="filter()" class="btn btn-outline-primary rounded me-2">search</button>
+                            <button class="btn btn-outline-primary rounded" (click)="refreshFilter()">{{'refresh_table' | translate}}</button>
+                        </div>
+
+            </div>
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead>
+                      <tr class="bg-dark text-white">
+                        <th scope="col" (click)="sortList('id')">ID
+                          <span class="sortF">
+                            {{sortField =="id" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                          </span>
+                        </th>
+                        <th scope="col" (click)="sortList('name')">{{'name' | translate}}
+                          <span class="sortF">
+                            {{sortField =="name" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                          </span>
+                        </th>
+                        
+                        <th scope="col" (click)="sortList('emp_email')">{{'emp_email' | translate}}
+                          <span class="sortF">
+                            {{sortField =="emp_email" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                          </span>
+                        </th>
+                        <th scope="col" (click)="sortList('category')">{{'category' | translate}}
+                          <span class="sortF">
+                            {{sortField =="category" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                          </span>
+                        </th>
+                        <th scope="col">{{'action' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor="let i of items;let j = index">
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.name}}</td>
+                        <td>{{i.emp_email}}</td>
+                        <td>{{i.category}}</td>
+                        <td style="width: 200px;"><button [routerLink]="['products']" [queryParams]="{id:i.id}" class="btn btn-light me-2"  ><span class="material-symbols-outlined">
+                          description
+                          </span></button>
+                          <button (click)="remove(i.id)" class="btn btn-light me-2"><span class="material-symbols-outlined">
+                          delete
+                          </span></button>
+                          <button (click)="edit(i.id, j)" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" ><span class="material-symbols-outlined">
+                            edit
+                            </span></button>
+                        </td>
+                         
+                        </tr>            
+                    </tbody>
+                  </table>
+                
+            </div>    
+        </div>
+    </div>
+    
+
+    </div>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{'edit' | translate}}</h5>
+        <button type="button" (click)="success = false" class="close btn" data-dismiss="modal" aria-label="Close">
+          <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p *ngIf="success" class="text-success d-flex justify-content-center" style="font-weight: bold;text-align: center;">{{'Success' | translate}}</p>
+        <form  class="register mt-4" [formGroup]="form">
+          <div class="row">
+            <div class="col d-flex flex-column mb-2 w-100" >
+                <label >
+                    <span>{{'name_en' | translate}}</span>
+                </label>
+                <input class="form-control" formControlName="name" type="text">
+            </div>
+            <div class="col d-flex flex-column mb-2 w-100">
+                <label >
+                    <span>{{'name_geo' | translate}}</span>
+                </label>
+                <input class="form-control" formControlName="name_geo" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex flex-column mb-2 w-100" >
+                <label >
+                    <span>{{'email' | translate}}</span>
+                </label>
+                <input class="form-control" formControlName="emp_email" type="text">
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col d-flex flex-column mb-2 w-100" >
+                <label >
+                    <span>{{'password' | translate}}</span>
+                </label>
+                <input class="form-control" formControlName="password" type="text">
+            </div>
+            
+        </div>
+        <div class="row">
+          <div class="col d-flex flex-column mb-2 w-100" >
+              <label >
+                  <span>{{'summery_en' | translate}}</span>
+              </label>
+              <input class="form-control" formControlName="summery_en" type="text">
+          </div>
+          <div class="col d-flex flex-column mb-2 w-100" >
+            <label >
+                <span>{{'summery_geo' | translate}}</span>
+            </label>
+            <input class="form-control" formControlName="summery_geo" type="text">
+        </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex flex-column mb-2 w-100" >
+              <label >
+                  <span>{{'category' | translate}}</span>
+              </label>
+                <select  formControlName="category" class="form-select" aria-label="Default select example">
+                  <option *ngFor="let i of categ"  [value]="i">{{i}}</option>
+                  
+                </select>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col d-flex flex-column mb-2 w-100" >
+            <label>
+                <span>{{'disabled' | translate}}</span>
+            </label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" formControlName="disabled" id="flexCheckDefault">
+            </div>  
+          </div>
+          
+      </div>
+        <div class="row">
+
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"(click)="success = false" data-dismiss="modal">{{'close' | translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="editStore()">{{'save_changes' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+</div>

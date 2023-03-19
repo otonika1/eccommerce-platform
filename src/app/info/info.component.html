@@ -1,0 +1,44 @@
+
+<div class="container mt-4 d-flex justify-content-center">
+    <div class="container pb-4 mt-5 mb-5 bg-white" >
+        <div class="row d-flex justify-content-center">
+            <div class="col-10 mt-4">
+                <label >{{'search_name' | translate}}</label>
+                        <div class="input-group mb-3">
+                            <input [formControl]="filterName" type="text"  class="form-control rounded"  placeholder="name" >
+                            <button type="button"(click)="filter()" class="btn btn-outline-primary rounded me-2">search</button>
+                            <button class="btn btn-outline-primary rounded" (click)="refreshFilter()">{{'refresh_table' | translate}}</button>
+                        </div>
+
+            </div>
+        </div>
+        <div class="d-flex justify-content-center row mt-4" *ngFor="let i of arr | paginate: { itemsPerPage: 5, currentPage: p }; let g = index">
+            <div class="col-md-10">
+                <div class="row p-2 bg-white border rounded">
+                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" [src]="i.img"></div>
+                    <div class="col-md-6 mt-1">
+                        <h5>{{i.name}}</h5>
+                        <p class="text-justify text-truncate para mb-0">{{i.description}}<br><br></p>
+                        <p class="text-justify para mb-0" style="color: silver;">{{i.summery}}<br><br></p>
+                    </div>
+                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                        <div class="d-flex flex-row align-items-center">
+                            <h4 class="mr-1">${{i.Price}}</h4><span class="strike-text">${{(i.Price * 1.2) | number:'1.0-2'}}</span>
+                        </div>
+                        <h6 class="text-success">{{"author" | translate}}{{": " + i.author}}</h6>
+                        <div class="d-flex flex-column mt-1"><button (click)="Pay(g)" class="btn btn-primary btn-sm" type="button">{{"Buy" | translate}}</button></div>
+                        <div class="d-flex flex-column mt-1"><button  class="btn btn-primary btn-sm" type="button">{{"details" | translate}}</button></div>
+                        <div class="d-flex flex-column mt-1"><button (click)="addToCart(g)" class="btn btn-primary btn-sm" type="button">{{"add_to_cart" | translate}}</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <pagination-controls class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+<div *ngIf="succesMsg" class="alert alert-success d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'Success' | translate}}</span>
+</div>
+<div *ngIf="dangerMsg" class="alert alert-danger d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'not_enough' | translate}}</span>
+</div>

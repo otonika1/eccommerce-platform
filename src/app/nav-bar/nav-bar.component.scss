@@ -1,0 +1,67 @@
+select:required:invalid {
+    color: gray;
+  }
+  option[value=""][disabled] {
+    display: none;
+  }
+  option {
+    color: black;
+  }
+  .fl-left{
+    
+    margin-left: 9.5%;
+    display: flex;
+    align-items: center;
+  }
+  .select{
+    width: 85px;
+    
+  }
+  .name{
+    white-space: nowrap;
+  }
+  .end{
+    position: absolute;
+    left: 65%;
+    top: 15px;
+    display: flex;
+    align-items: center;
+  }
+  .d-m{
+    display: none;
+  }
+  .d-d{
+    display: block;
+  }
+  @media only screen and (max-width: 1000px) {
+    .d-m{
+      display: block;
+    }
+    .form-select{
+      margin-top: 10px;
+    }
+    .d-d{
+      display: none;
+    }
+    .end{
+      position: relative;
+      left: 0%;
+      display: block;
+    }
+    .fl-left{
+      margin-left: 0%;
+      align-items: start;
+    }
+    .lg{
+      position: relative;
+      left: 0%;
+    }
+    .logout{
+      position: relative;
+      left: 0%;
+    }
+    .select{
+      width: 15%;
+    }
+
+  }

@@ -1,0 +1,546 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "12345678",
+      "role": "Admin",
+      "name": "Admin",
+      "balance": 997258.27,
+      "lastname": 997271.26
+    },
+    {
+      "id": 2,
+      "email": "oto.avloxashvili10@gmail.com",
+      "password": "12345678",
+      "role": "Editor",
+      "name": "Oto",
+      "balance": 9935.05,
+      "lastname": 9948.04
+    },
+    {
+      "id": 3,
+      "email": "oto@gmail.com",
+      "password": "12345678",
+      "role": "Client",
+      "name": "Oto",
+      "balance": 477.03,
+      "lastname": 577.02
+    },
+    {
+      "name": "Mikheil",
+      "lastname": "Makharadze",
+      "email": "mixa@gmail.com",
+      "password": "12345678",
+      "confirm_password": "12345678",
+      "role": "Client",
+      "balance": 6969696969696970000,
+      "id": 4
+    },
+    {
+      "role": "Client",
+      "name": "Levan",
+      "lastname": "Khaduri",
+      "email": "levan@gmail.com",
+      "password": "12345678",
+      "confirm_password": "12345678",
+      "token": "dfb75636-3f4e-480e-ba41-e7da6e94aa2297.55007380076353",
+      "id": 5,
+      "balance": 99
+    },
+    {
+      "name": "Otia",
+      "lastname": "Ioseliani",
+      "email": "otia@gmail.com",
+      "password": "12345678",
+      "confirm_password": "12345678",
+      "role": "Client",
+      "balance": 2011,
+      "id": 8
+    },
+    {
+      "name": "Lali",
+      "lastname": "Osikmishvili",
+      "email": "laliko123456@gmail.com",
+      "password": "12345678",
+      "confirm_password": null,
+      "role": "Editor",
+      "balance": 99930.31,
+      "isAllowed": false,
+      "id": 12
+    },
+    {
+      "name": "Oto",
+      "lastname": "Avlokhashvili",
+      "email": "oto123@gmail.com",
+      "password": "12345678",
+      "confirm_password": "12345678",
+      "token": "b05c3a95-4658-4376-87a1-1c4455b4d0c293.24612454497712",
+      "role": "Client",
+      "balance": 0,
+      "id": 13
+    },
+    {
+      "name": "store11221",
+      "lastname": null,
+      "email": "example1@ibsu.edu.ge",
+      "password": "12345678",
+      "confirm_password": "12345678",
+      "role": "Pending",
+      "balance": 0,
+      "isAllowed": false,
+      "id": 14
+    },
+    {
+      "name": "radnom",
+      "lastname": null,
+      "email": "rand@ibsu.edu.ge",
+      "password": "12345678",
+      "confirm_password": "12345678",
+      "role": "Pending",
+      "balance": 0,
+      "isAllowed": false,
+      "id": 15
+    }
+  ],
+  "userInfo": {
+    "role": "",
+    "token": "",
+    "email": "",
+    "name": "",
+    "balance": 0,
+    "id": 0,
+    "lastname": ""
+  },
+  "cart": [
+    {
+      "cartItems": [
+        {
+          "name": "ტაფა",
+          "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+          "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+          "author": "Admin",
+          "Price": 12.99
+        },
+        {
+          "name": "თეფში",
+          "description": "თეფში რომელიც მალე გატყდება",
+          "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
+          "author": "Admin",
+          "Price": 99.99
+        },
+        {
+          "name": "ტაფა",
+          "description": "გასარეცხი ტაფა, საჭმლით",
+          "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
+          "author": "Admin",
+          "Price": 69.69
+        },
+        {
+          "name": "ჭუჭყიანი თეფში",
+          "description": "თეფში, გემრიელი საჭმლით",
+          "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
+          "Price": 1.2,
+          "author": "Admin",
+          "summery": "მოკლე შეჯამება"
+        },
+        {
+          "name": "ტესტ",
+          "description": "ტესტი",
+          "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+          "Price": 100,
+          "author": "Admin",
+          "summery": ""
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "regStore": [
+    {
+      "name": "Random Things Store",
+      "name_geo": "შემთხვევითი ნივთების მაღაზია",
+      "emp_email": "emp@emp.ge",
+      "password": "12345678",
+      "products": [
+        {
+          "id": 1,
+          "en": [
+            {
+              "name": "Pan",
+              "description": "Pan which will be easy to throw away",
+              "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+              "author": "Admin",
+              "Price": 12.99
+            }
+          ],
+          "ge": [
+            {
+              "name": "ტაფა",
+              "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+              "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+              "author": "Admin",
+              "Price": 12.99
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "en": [
+            {
+              "name": "Plate",
+              "description": "Plate which will be break easily",
+              "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
+              "author": "Admin",
+              "Price": 99.99
+            }
+          ],
+          "ge": [
+            {
+              "name": "თეფში",
+              "description": "თეფში რომელიც მალე გატყდება",
+              "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
+              "author": "Admin",
+              "Price": 99.99
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "en": [
+            {
+              "name": "Pan",
+              "description": "Pan which sould be washed, with food",
+              "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
+              "author": "Admin",
+              "Price": 69.69
+            }
+          ],
+          "ge": [
+            {
+              "name": "ტაფა",
+              "description": "გასარეცხი ტაფა, საჭმლით",
+              "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
+              "author": "Admin",
+              "Price": 69.69
+            }
+          ]
+        },
+        {
+          "en": [
+            {
+              "name": "Dirty Plate",
+              "description": "Plate, with tasty food",
+              "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
+              "Price": 1.2,
+              "author": "Admin",
+              "summery": "short summery"
+            }
+          ],
+          "ge": [
+            {
+              "name": "ჭუჭყიანი თეფში",
+              "description": "თეფში, გემრიელი საჭმლით",
+              "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
+              "Price": 1.2,
+              "author": "Admin",
+              "summery": "მოკლე შეჯამება"
+            }
+          ]
+        },
+        {
+          "en": [
+            {
+              "name": "test",
+              "description": "test",
+              "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+              "Price": 100,
+              "author": "Admin",
+              "summery": ""
+            }
+          ],
+          "ge": [
+            {
+              "name": "ტესტ",
+              "description": "ტესტი",
+              "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+              "Price": 100,
+              "author": "Admin",
+              "summery": ""
+            }
+          ]
+        },
+        {
+          "en": [
+            {
+              "name": "Washing Machine",
+              "description": "washes dirty clothes very well",
+              "img": "https://www.discounteri.ge/images/detailed/10/I75022-1.png",
+              "Price": 590,
+              "author": "Admin",
+              "summery": ""
+            }
+          ],
+          "ge": [
+            {
+              "name": "საერცხის მანქანა",
+              "description": "ჭუჭყიან ტანსაცმელს რეცხავს შენასნიშნავად",
+              "img": "https://www.discounteri.ge/images/detailed/10/I75022-1.png",
+              "Price": 590,
+              "author": "Admin",
+              "summery": ""
+            }
+          ]
+        }
+      ],
+      "category": null,
+      "disabled": false,
+      "summery": "short summery",
+      "id": 1
+    },
+    {
+      "name": "Chocolate Store",
+      "name_geo": "შიკოლადების მაღაზია",
+      "emp_email": "example@gmail.com",
+      "password": "12345678",
+      "products": [
+        {
+          "en": [
+            {
+              "name": "White Chocolate",
+              "description": "tasty white chocolate with nuts",
+              "img": "https://www.thespruceeats.com/thmb/FhHcgQni8lgV0griUeDJMTAszxI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chocolate_hero1-d62e5444a8734f8d8fe91f5631d51ca5.jpg",
+              "Price": 50,
+              "author": "Lali",
+              "summery": ""
+            }
+          ],
+          "ge": [
+            {
+              "name": "თეთრი შიკოლადი",
+              "description": "გემრიელი თეთრი შოკოლადი თხილით",
+              "img": "https://www.thespruceeats.com/thmb/FhHcgQni8lgV0griUeDJMTAszxI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chocolate_hero1-d62e5444a8734f8d8fe91f5631d51ca5.jpg",
+              "Price": 50,
+              "author": "Lali",
+              "summery": ""
+            }
+          ]
+        }
+      ],
+      "category": null,
+      "disabled": false,
+      "summery_en": null,
+      "summery_geo": null,
+      "id": 3
+    },
+    {
+      "name": "store1",
+      "name_geo": "მაღაზია1",
+      "emp_email": "example@ibsu.edu.ge",
+      "password": "12345678",
+      "products": [
+        {
+          "en": [
+            {
+              "name": "product2",
+              "description": "description",
+              "img": "123",
+              "Price": 100,
+              "author": "Admin"
+            }
+          ],
+          "ge": [
+            {
+              "name": "პროდუქტი2",
+              "description": "აღწერა",
+              "img": "123",
+              "Price": 100,
+              "author": "Admin"
+            }
+          ]
+        }
+      ],
+      "category": null,
+      "disabled": true,
+      "summery_en": null,
+      "summery_geo": null,
+      "id": 4
+    },
+    {
+      "name": "Oto Avlokhashvili",
+      "name_geo": "Oto Avlokhashvili",
+      "emp_email": "oto.avloxashvili10@ibsu.edu.ge",
+      "password": "12345678",
+      "products": [],
+      "category": "Household",
+      "id": 5
+    }
+  ],
+  "history": [
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 1
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 2
+    },
+    {
+      "name": "თეფში",
+      "description": "თეფში რომელიც მალე გატყდება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
+      "author": "Admin",
+      "Price": 99.99,
+      "id": 3
+    },
+    {
+      "name": "ტაფა",
+      "description": "გასარეცხი ტაფა, საჭმლით",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
+      "author": "Admin",
+      "Price": 69.69,
+      "id": 4
+    },
+    {
+      "name": "ჭუჭყიანი თეფში",
+      "description": "თეფში, გემრიელი საჭმლით",
+      "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
+      "Price": 1.2,
+      "author": "Admin",
+      "summery": "მოკლე შეჯამება",
+      "id": 5
+    },
+    {
+      "name": "ჭუჭყიანი თეფში",
+      "description": "თეფში, გემრიელი საჭმლით",
+      "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
+      "Price": 1.2,
+      "author": "Admin",
+      "summery": "მოკლე შეჯამება",
+      "id": 6
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 7
+    },
+    {
+      "name": "თეფში",
+      "description": "თეფში რომელიც მალე გატყდება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
+      "author": "Admin",
+      "Price": 99.99,
+      "id": 8
+    },
+    {
+      "name": "ტესტ",
+      "description": "ტესტი",
+      "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+      "Price": 100,
+      "author": "Admin",
+      "summery": "",
+      "id": 9
+    },
+    {
+      "name": "ტესტ",
+      "description": "ტესტი",
+      "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+      "Price": 100,
+      "author": "Admin",
+      "summery": "",
+      "id": 10
+    },
+    {
+      "name": "ტესტ",
+      "description": "ტესტი",
+      "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+      "Price": 100,
+      "author": "Admin",
+      "summery": "",
+      "id": 11
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 12
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 13
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 14
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 15
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 16
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 17
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 18
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 19
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 20
+    }
+  ]
+}

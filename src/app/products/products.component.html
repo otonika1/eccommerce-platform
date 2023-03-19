@@ -1,0 +1,254 @@
+<div class="container">
+    <div >
+        <div class="mt-4">
+            <div class="d-flex" style="gap:10px">
+                <a class="btn btn-light" [ngClass]="reg ? 'bg-dark text-white' : ''" (click)="reg = true;table = false">{{'product_reg' | translate}}</a>
+                <a class="btn btn-light" [ngClass]="table ? 'bg-dark text-white' : ''" (click)="reg = false;table = true">{{'table' | translate}}</a>
+            </div>
+            <div class="card t p-4" *ngIf="reg">
+                <div class="row">
+
+                    <h4 class="col-10">{{'add_product' | translate}}</h4>
+                    <button class="btn btn-dark  col-2" routerLink="/editor">{{'back' | translate}}</button>
+                </div>
+                <div class="card-body" [formGroup]="form">
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'name_en' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('name')?.invalid ? 'red-border' : '' " formControlName="name" type="text">
+                        </div>
+                        <div class="col d-flex flex-column mb-2 w-100">
+                            <label >
+                                <span>{{'name_geo' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('name_geo')?.invalid ? 'red-border' : '' " formControlName="name_geo" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'description_en' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('description')?.invalid ? 'red-border' : '' " formControlName="description" type="text">
+                        </div>
+                        <div class="col d-flex flex-column mb-2 w-100">
+                            <label >
+                                <span>{{'description_geo' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('description_geo')?.invalid ? 'red-border' : '' " formControlName="description_geo" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'price' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('Price')?.invalid ? 'red-border' : '' " formControlName="Price" type="number">
+                        </div>
+                        <div class="col d-flex flex-column mb-2 w-100">
+                            <label >
+                                <span>{{'author' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('author')?.invalid ? 'red-border' : '' " formControlName="author" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'image' | translate}}</span>
+                            </label>
+                            <input class="form-control"  [ngClass]="this.form.get('img')?.invalid ? 'red-border' : '' " formControlName="img" type="text">
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                            <label >
+                                <span>{{'summery_en' | translate}}</span>
+                            </label>
+                            <input class="form-control" formControlName="summery_en" type="text">
+                        </div>
+                        <div class="col d-flex flex-column mb-2 w-100" >
+                          <label >
+                              <span>{{'summery_geo' | translate}}</span>
+                          </label>
+                          <input class="form-control" formControlName="summery_geo" type="text">
+                      </div>
+                      </div>
+                    <div>
+                        <button (click)="add()" class="btn btn-primary" >{{'add' | translate}}</button>
+                    </div>
+                    <div class="row">
+
+                </div>
+            </div>    
+        </div>
+        <div class="card t p-4" *ngIf="table">
+            <div class="row">
+
+                <h4 class="col-10">{{'product_table' | translate}}</h4>
+                <button class="btn btn-dark  col-2" routerLink="/editor">{{'back' | translate}}</button>
+            </div>
+            <div class="card-body" >
+                <div class="card-body" [formGroup]="form">
+                    <div class="mt-4">
+                              <div class="input-group mb-3">
+                                  <input [formControl]="filterName" type="text"  class="form-control rounded"  placeholder="name" >
+                                  <button type="button"(click)="filter()" class="btn btn-outline-primary rounded me-2">search</button>
+                                  <button class="btn btn-outline-primary rounded" (click)="refreshFilter()">{{'refresh_table' | translate}}</button>
+                              </div>
+      
+                  </div>
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead>
+                      <tr class="bg-dark text-white">
+                        
+                        <th scope="col" (click)="sortList('name')">{{'name' | translate}}
+                          <span class="sortF">
+                            {{sortField =="name" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                          </span>
+                        </th>
+                        <th scope="col" (click)="sortList('author')">{{'author' | translate}}
+                          <span class="sortF">
+                            {{sortField =="author" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                          </span>
+                        </th>
+                        <th scope="col" (click)="sortList('description')">{{'description' | translate}}
+                            <span class="sortF">
+                              {{sortField =="description" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                            </span>
+                        </th>
+                        <th scope="col" >{{'image' | translate}}
+                          
+                        </th>
+                        <th scope="col" (click)="sortList('Price')">{{'price' | translate}}
+                            <span class="sortF">
+                              {{sortField =="Price" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                            </span>
+                          </th>
+                        <th scope="col">{{'action' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor="let i of arr; let j = index">
+                        
+                        <td>{{i.name}}</td>
+                        <td>{{i.author}}</td>
+                        <td>{{i.description}}</td>
+                        <td>{{"..."}}</td>
+                        <td>{{i.Price +  " $"}}</td>
+                        <td style="width: 150px;">
+                          <button (click)="edit(j)" class="btn btn-light me-2" data-toggle="modal" data-target="#exampleModal" >
+                            <span class="material-symbols-outlined">
+                            edit
+                            </span>
+                          </button>
+                          <button (click)="remove(j)" class="btn btn-light">
+                            <span class="material-symbols-outlined">
+                            delete
+                            </span>
+                          </button>
+                        </td>
+                      </tr>            
+                    </tbody>
+                  </table>
+                
+            </div>    
+        </div>
+    </div>
+    
+
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{'edit' | translate}}</h5>
+          <button type="button" (click)="success = false" class="close btn" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p *ngIf="success2" class="text-success d-flex justify-content-center" style="font-weight: bold;text-align: center;">{{'Success' | translate}}</p>
+          <form  class="register mt-4" [formGroup]="form">
+            <div class="d-flex flex-row"  >
+    
+                <div class="d-flex flex-column mb-2 w-100" style="margin-right: 20px;">
+                    <label >
+                        <span>{{'name_en' | translate}}</span>
+                    </label>
+                    <input class="form-control" formControlName="name" type="text">
+                </div>
+                <div class="d-flex flex-column mb-2 w-100">
+                    <label >
+                        <span>{{'name_geo' | translate}}</span>
+                    </label>
+                    <input class="form-control" formControlName="name_geo" type="text">
+                </div>
+            </div>
+            <div class="d-flex flex-row"  >
+    
+                <div class="d-flex flex-column mb-2 w-100" style="margin-right: 20px;">
+                    <label >
+                        <span>{{'description_en' | translate}}</span>
+                    </label>
+                    <input class="form-control" formControlName="description" type="text">
+                </div>
+                <div class="d-flex flex-column mb-2 w-100">
+                    <label >
+                        <span>{{'description_geo' | translate}}</span>
+                    </label>
+                    <input class="form-control" formControlName="description_geo" type="text">
+                </div>
+            </div>
+            <div class="d-flex flex-column mb-2">
+                <label >
+                    <span>{{'image' | translate}}</span>
+                </label>
+                <input class="form-control" formControlName="img" type="text">
+            </div>
+            <div class="row">
+                <div class="col d-flex flex-column mb-2 w-100" >
+                    <label >
+                        <span>{{'summery_en' | translate}}</span>
+                    </label>
+                    <input class="form-control" formControlName="summery_en" type="text">
+                </div>
+                <div class="col d-flex flex-column mb-2 w-100" >
+                    <label >
+                        <span>{{'summery_geo' | translate}}</span>
+                    </label>
+                    <input class="form-control" formControlName="summery_geo" type="text">
+                </div>
+            </div>
+            
+            <div class="d-flex flex-column mb-2">
+                <label >
+                    <span>{{'price' | translate}}</span>
+                </label>
+                <input class="form-control" formControlName="Price"  type="number">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <label >
+                  <span>{{'author' | translate}}</span>
+              </label>
+              <input class="form-control" formControlName="author"  type="text">
+
+          </div>
+
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"(click)="success = false" data-dismiss="modal">{{'close' | translate}}</button>
+          <button type="button" class="btn btn-primary" (click)="saveEdit()">{{'save_changes' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div *ngIf="successMsg" class="alert alert-success d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'Success' | translate}}</span>
+</div>
