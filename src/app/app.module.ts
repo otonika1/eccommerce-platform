@@ -18,6 +18,7 @@ import { ProductsComponent } from './products/products.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { SliderComponent } from './slider/slider.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -59,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       messagingSenderId: "1089688823758",
       appId: "1:1089688823758:web:a14c930272fd76fb4c2d9f"
     }),
+    NgbModule,
     
   ],
   exports:[TranslateModule],

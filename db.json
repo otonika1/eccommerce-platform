@@ -542,5 +542,11 @@
       "Price": 12.99,
       "id": 20
     }
+  ],
+  "carousel":[
+    {"src":"https://preview.redd.it/c3uhsgo1vx541.jpg?auto=webp&s=a45b583ebf921d3ad1649e77ad05e55226140120", "alt":"First slide"},
+    {"src":"https://i.pinimg.com/originals/c4/13/59/c413599bc57f7596d75bea1775b14169.jpg", "alt":"Second slide"},
+    {"src":"https://lookw.ru/12/1266/1638156200-1001.jpg", "alt":"Third slide"}
+    
   ]
 }

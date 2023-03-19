@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-slider',
@@ -6,17 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
-
-    
-  images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
-  /* constructor(config: NgbCarouselConfig) {
-    // customize default values of carousels used by this component tree
-    config.interval = 2000;
-    config.keyboard = true;
-    config.pauseOnHover = true;
-  } */
+  constructor(public auth:AuthService) {}
+  carousel:any
   ngOnInit(): void {
+    this.get();
   }
-
+  get(){
+    this.auth.getCarousel().subscribe(res => {
+      this.carousel = res
+      console.log(this.carousel);
+      
+    })
+  }
 }

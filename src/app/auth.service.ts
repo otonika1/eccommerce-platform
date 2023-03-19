@@ -80,4 +80,8 @@ export class AuthService {
   getHystory(){
     return this.http.get(`${environment.BaseUrl}history`)
   }
+  //carousel
+  getCarousel(){
+    return this.http.get(`${environment.BaseUrl}carousel`)
+  }
 }
