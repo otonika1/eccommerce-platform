@@ -68,7 +68,7 @@ export class AuthComponent implements OnInit {
     { 
       name:new FormControl(''),
       lastname:new FormControl(''),
-      email: new FormControl('',[Validators.email]),
+      email: new FormControl(''),
       password: new FormControl(''),
       confirm_password: new FormControl(''),
       token: new FormControl(uuidv4() + Math.random() *100),
@@ -82,13 +82,17 @@ export class AuthComponent implements OnInit {
   add(){
      //if passwords are equal have to be added
      if(this.form.get('password')?.value == this.form.get('confirm_password')?.value){
-      this.auth.create(this.form.value).subscribe(res => {console.log(res);
-        this.noEqualPass = false;
-        this.succesMsg = true;
-        setTimeout(() => {this.succesMsg = false;},2000)
-      })
-      this.form.reset() 
-      window.location.reload()
+      if(this.form.get('email')?.valid){
+        console.log(this.form.get('email')?.valid);
+        
+        this.auth.create(this.form.value).subscribe(res => {console.log(res);
+          this.noEqualPass = false;
+          this.succesMsg = true;
+          setTimeout(() => {this.succesMsg = false;},2000)
+        })
+        this.form.reset() 
+        window.location.reload()
+      }
      }else{
         this.noEqualPass = true;
      }

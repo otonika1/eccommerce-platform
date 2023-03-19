@@ -17,6 +17,8 @@ import { EditorRegComponent } from './editor-reg/editor-reg.component';
 import { ProductsComponent } from './products/products.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { SliderComponent } from './slider/slider.component';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -31,7 +33,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditorComponent,
     EditorRegComponent,
     ProductsComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    SliderComponent,
+    
   ],
   imports: [
     HttpClientModule,

@@ -45,8 +45,8 @@
             <label >
                 <span>{{'email' | translate}}</span>
             </label>
-            <input [ngClass]="email.invalid ? 'red-border' : ''" class="form-control shadow-none" formControlName="email" type="email">
-            <span class="text-danger" *ngIf="email.invalid">{{'email-invalid' | translate}}</span>
+            <input pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" [ngClass]="form.get('email')?.invalid ? 'red-border' : ''" class="form-control shadow-none" formControlName="email" type="email">
+            <span class="text-danger" *ngIf="form.get('email')?.invalid">{{'email-invalid' | translate}}</span>
         </div>
         
         <div class="d-flex flex-column mb-2">
@@ -60,7 +60,8 @@
             <label >
                 <span>{{'confirm_password' | translate}}</span>
             </label>
-            <input class="form-control"  formControlName="confirm_password" minlength="8" type="password">  
+            <input class="form-control"  formControlName="confirm_password" minlength="8" type="password"> 
+            <span class="text-danger"  *ngIf="this.form.get('confirm_password')?.invalid">{{'password-invalid' | translate}}</span> 
             <span *ngIf="noEqualPass" class="text-danger ">{{'nonEqual' | translate}}</span>          
         </div>
         <div class="mt-4">

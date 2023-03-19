@@ -7,13 +7,13 @@
         <button class="btn btn-danger" (click)="logout()">Log out</button>
     </div>
 </div> -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand fl-left" routerLink ="info"><h3>{{"Store"}}</h3></a>
+    <a class="navbar-brand fl-left" routerLink ="info"><h3><span class="text-success">E</span><span >Shop</span></h3></a>
     <div class="d-m">
-      <button class="btn text-white" (click)="logout()"><img style="width: 25px;height: 25px;" src="https://icon-library.com/images/logout-icon-png/logout-icon-png-3.jpg" alt=""></button>
+      <button class="btn text-dark" (click)="logout()"><img style="width: 25px;height: 25px;" src="https://icon-library.com/images/logout-icon-png/logout-icon-png-3.jpg" alt=""></button>
     </div>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul  class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -38,32 +38,32 @@
        
         <li class="end" *ngIf="r">
           <div *ngIf="CurrUserName" style="max-width: 150px ;" class="me-2 name">
-            <span class="text-white">{{"Hello" | translate}}{{", " + CurrUserName}}</span>
+            <span class="text-dark">{{"Hello" | translate}}{{", " + CurrUserName}}</span>
           </div>
           <div *ngIf="balance != 0" style="max-width: 150px ;" class="me-2 name">
-            <span class="text-white">{{"$ "}}{{balance}}</span>
+            <span class="text-dark">{{"$ "}}{{balance}}</span>
           </div>
           <div>
 
-            <a class="nav-link" routerLink ="cart" ><span class="material-symbols-outlined text-white">
+            <a class="nav-link" routerLink ="cart" ><span class="material-symbols-outlined text-dark">
               shopping_cart
               </span></a>
           </div>
           
-          <select style="width: 90px;" class="form-select bg-dark text-white select d-d"  (change)="changeLg($event.target)">
-            <option class="text-white"  value="en" [selected]="lang == 'en'">EN</option>
-            <option class="text-white" value="geo" [selected]="lang == 'geo'">GEO</option>
+          <select style="width: 90px;" class="form-select bg-light text-dark border-light select d-d"  (change)="changeLg($event.target)">
+            <option class="text-dark"  value="en" [selected]="lang == 'en'">EN</option>
+            <option class="text-dark" value="geo" [selected]="lang == 'geo'">GEO</option>
           </select>
 
           <div class="d-d">
-            <button class="btn text-white" (click)="logout()"><img style="width: 25px;height: 25px;" src="https://icon-library.com/images/logout-icon-png/logout-icon-png-3.jpg" alt=""></button>
+            <button class="btn text-dark" (click)="logout()"><img style="width: 25px;height: 25px;" src="https://icon-library.com/images/logout-icon-png/logout-icon-png-3.jpg" alt=""></button>
           </div>
 
         </li>
         <li class="d-m" style="margin-top: 10px;">
-          <select style="width: 90px;" class="form-select bg-dark text-white select"  (change)="changeLg($event.target)">
-            <option class="text-white"  value="en" [selected]="lang == 'en'">EN</option>
-            <option class="text-white" value="geo" [selected]="lang == 'geo'">GEO</option>
+          <select style="width: 90px;" class="form-select bg-light text-dark select"  (change)="changeLg($event.target)">
+            <option class="text-dark"  value="en" [selected]="lang == 'en'">EN</option>
+            <option class="text-dark" value="geo" [selected]="lang == 'geo'">GEO</option>
           </select>
           
             
