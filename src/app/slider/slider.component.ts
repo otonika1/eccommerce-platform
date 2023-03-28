@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Carousel } from './carousel';
 
 @Component({
   selector: 'app-slider',
@@ -8,12 +9,12 @@ import { AuthService } from '../auth.service';
 })
 export class SliderComponent implements OnInit {
   constructor(public auth:AuthService) {}
-  carousel:any
+  carousel:Carousel[] = []
   ngOnInit(): void {
     this.get();
   }
   get(){
-    this.auth.getCarousel().subscribe(res => {
+    this.auth.getCarousel().subscribe((res:Carousel[]) => {
       this.carousel = res
       console.log(this.carousel);
       

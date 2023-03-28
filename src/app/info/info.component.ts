@@ -81,16 +81,16 @@ export class InfoComponent implements OnInit {
     })
   }
 
-  CurrUserName:any
-  r:any
-  balance:any
-  email:any
-  password:any
-  id:any
-  lastname:any
+  CurrUserName:string | undefined
+  r:string | undefined
+  balance!:number
+  email:string | undefined
+  password:string | undefined
+  id!:number
+  lastname:string | undefined
   succesMsg:boolean =false
   dangerMsg:boolean =false
-  Pay(g:any)
+  Pay(g:number)
   {
     this.auth.getCurrentUser().subscribe( (res:any) => {
       this.CurrUserName = res.name;

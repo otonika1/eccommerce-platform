@@ -6,8 +6,8 @@
       "password": "12345678",
       "role": "Admin",
       "name": "Admin",
-      "balance": 997258.27,
-      "lastname": 997271.26
+      "balance": 997105.11,
+      "lastname": 997205.11
     },
     {
       "id": 2,
@@ -104,13 +104,12 @@
     }
   ],
   "userInfo": {
-    "role": "Admin",
+    "id": 1,
     "email": "admin@gmail.com",
     "password": "12345678",
+    "role": "Admin",
     "name": "Admin",
-    "lastname": 997271.26,
-    "balance": 997258.27,
-    "id": 1
+    "balance": 997105.11
   },
   "cart": [
     {
@@ -128,29 +127,6 @@
           "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
           "author": "Admin",
           "Price": 99.99
-        },
-        {
-          "name": "ტაფა",
-          "description": "გასარეცხი ტაფა, საჭმლით",
-          "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
-          "author": "Admin",
-          "Price": 69.69
-        },
-        {
-          "name": "ჭუჭყიანი თეფში",
-          "description": "თეფში, გემრიელი საჭმლით",
-          "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
-          "Price": 1.2,
-          "author": "Admin",
-          "summery": "მოკლე შეჯამება"
-        },
-        {
-          "name": "ტესტ",
-          "description": "ტესტი",
-          "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
-          "Price": 100,
-          "author": "Admin",
-          "summery": ""
         }
       ],
       "id": 1
@@ -541,12 +517,70 @@
       "author": "Admin",
       "Price": 12.99,
       "id": 20
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 21
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 22
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 23
+    },
+    {
+      "name": "ტაფა",
+      "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+      "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
+      "author": "Admin",
+      "Price": 12.99,
+      "id": 24
+    },
+    {
+      "name": "Dirty Plate",
+      "description": "Plate, with tasty food",
+      "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
+      "Price": 1.2,
+      "author": "Admin",
+      "summery": "short summery",
+      "id": 25
+    },
+    {
+      "name": "test",
+      "description": "test",
+      "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
+      "Price": 100,
+      "author": "Admin",
+      "summery": "",
+      "id": 26
     }
   ],
-  "carousel":[
-    {"src":"https://preview.redd.it/c3uhsgo1vx541.jpg?auto=webp&s=a45b583ebf921d3ad1649e77ad05e55226140120", "alt":"First slide"},
-    {"src":"https://i.pinimg.com/originals/c4/13/59/c413599bc57f7596d75bea1775b14169.jpg", "alt":"Second slide"},
-    {"src":"https://lookw.ru/12/1266/1638156200-1001.jpg", "alt":"Third slide"}
-    
+  "carousel": [
+    {
+      "src": "https://preview.redd.it/c3uhsgo1vx541.jpg?auto=webp&s=a45b583ebf921d3ad1649e77ad05e55226140120",
+      "alt": "First slide"
+    },
+    {
+      "src": "https://i.pinimg.com/originals/c4/13/59/c413599bc57f7596d75bea1775b14169.jpg",
+      "alt": "Second slide"
+    },
+    {
+      "src": "https://lookw.ru/12/1266/1638156200-1001.jpg",
+      "alt": "Third slide"
+    }
   ]
 }

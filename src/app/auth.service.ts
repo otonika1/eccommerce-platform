@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Clients } from './admin/clients';
+import { Carousel } from './slider/carousel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class AuthService {
   constructor(    private http: HttpClient,
     private router: Router,) { }
   //getuser
-  getuser():any{
-    return this.http.get(`${environment.BaseUrl}users`)
+  getuser():Observable<Clients[]>{
+    return this.http.get<Clients[]>(`${environment.BaseUrl}users`)
   }
   //getuserbyid
   getuserByid(id:number):any{
@@ -81,7 +83,7 @@ export class AuthService {
     return this.http.get(`${environment.BaseUrl}history`)
   }
   //carousel
-  getCarousel(){
-    return this.http.get(`${environment.BaseUrl}carousel`)
+  getCarousel():Observable<Carousel[]>{
+    return this.http.get<Carousel[]>(`${environment.BaseUrl}carousel`)
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Clients } from './clients';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 
 export class AdminComponent implements OnInit {
-  Clients:any[] = [];
+  Clients:Clients[] = [];
   clone:any
   sortField:string = 'none'
   sortOrder = 0
@@ -35,7 +36,7 @@ export class AdminComponent implements OnInit {
     
   }
   getClients(){
-    this.auth.getuser().subscribe((res:any) => {
+    this.auth.getuser().subscribe((res:Clients[]) => {
       console.log(res);
       this.Clients = res
       this.clone = res

@@ -1,29 +1,14 @@
 <ngb-carousel *ngIf="carousel">
-	<ng-template ngbSlide>
+	<ng-template ngbSlide *ngFor="let i of carousel; let j = index">
 		<div class="picsum-img-wrapper">
-			<img [src]="carousel[0].src" alt="Random first slide" />
+			<img [src]="i.src" alt="Random first slide" [alt]="i.alt"/>
 		</div>
 		<div class="carousel-caption">
 			
-			<p style="font-weight: bold;">{{'slogan1' | translate}}</p>
+			<p style="font-weight: bold;" *ngIf="j == 0">{{'slogan1' | translate}}</p>
+			<p style="font-weight: bold;" *ngIf="j == 1">{{'slogan2' | translate}}</p>
+			<p style="font-weight: bold;" *ngIf="j == 2">{{'slogan3' | translate}}</p>
 		</div>
 	</ng-template>
-	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
-			<img [src]="carousel[1].src" alt="Random second slide" />
-		</div>
-		<div class="carousel-caption">
-			
-			<p style="font-weight: bold;">{{'slogan2' | translate}}</p>
-		</div>
-	</ng-template>
-	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
-			<img [src]="carousel[2].src" alt="Random third slide" />
-		</div>
-		<div class="carousel-caption">
-			
-			<p style="font-weight: bold;">{{'slogan3' | translate}}</p>
-		</div>
-	</ng-template>
+	
 </ngb-carousel>
