@@ -19,6 +19,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { SliderComponent } from './slider/slider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetailsComponent } from './info/details/details.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,6 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductsComponent,
     AddToCartComponent,
     SliderComponent,
+    DetailsComponent,
     
   ],
   imports: [

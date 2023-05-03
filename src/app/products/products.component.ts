@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
-
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit {
   table:boolean = true;
   form = new FormGroup(
     { 
+      id: new FormControl(uuidv4() + Math.random() *100),
       name:new FormControl(''),
       name_geo:new FormControl(''),
       description:new FormControl(''),
@@ -84,8 +85,8 @@ export class ProductsComponent implements OnInit {
   successMsg:boolean = false;
   add(){
     //if(this.form.valid){
-      var obj1 = {name:this.form.get('name')?.value,description:this.form.get('description')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
-      var obj2 = {name:this.form.get('name_geo')?.value,description:this.form.get('description_geo')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
+      var obj1 = {id:this.form.get('id')?.value,name:this.form.get('name')?.value,description:this.form.get('description')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
+      var obj2 = {id:this.form.get('id')?.value,name:this.form.get('name_geo')?.value,description:this.form.get('description_geo')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
       this.en.push(obj1)
       this.ge.push(obj2)
       var obj3 = {en:this.en,ge:this.ge}
@@ -124,6 +125,7 @@ export class ProductsComponent implements OnInit {
     
     this.form = new FormGroup(
       { 
+        id: new FormControl(this.obj.products[index].en[0].id),
         name:new FormControl(this.obj.products[index].en[0].name),
         name_geo:new FormControl(this.obj.products[index].ge[0].name),
         description:new FormControl(this.obj.products[index].en[0].description),

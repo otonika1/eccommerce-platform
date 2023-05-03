@@ -29,7 +29,7 @@
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                             </a>
                             <ul class="product-links">
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                <li><a [routerLink]="['/info/edit',i.id]" [queryParams]="{id:i.id}"><i class="fa fa-search"></i></a></li>
                                 <li><a style="width: 60px;" (click)="Pay(g)">{{'Buy' | translate}}</a></li>
                             </ul>
                         </div>

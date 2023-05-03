@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-lg-3 mt-4">
+            <div class="card t p-4">
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <h4>{{'product-image' | translate}}</h4>
+                        <img [src]="details?.img">
+                        <div class="pb-4">
+                            <button style="width: 100%;" class="btn btn-success" >{{'Buy' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-9 mt-4">
+            <div class="card t p-4">
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <h4>{{details?.name}}</h4>
+                        <p>{{details?.description}}</p>
+
+                        <div class="d-flex">
+                            <span style="font-weight: bold;">
+                                {{'author' | translate}}
+                                {{": "}}
+                            </span>
+                            <span class="text-success" style="font-weight: bold;">
+                                {{details?.author}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@ import { Observable, pipe } from 'rxjs';
 })
 export class InfoComponent implements OnInit {
   lang:any
-  constructor(private auth:AuthService,) { }
+  constructor(private auth:AuthService) { }
   role:any
   arr: any[] = []
   clone:any
@@ -40,6 +40,8 @@ export class InfoComponent implements OnInit {
     this.role = localStorage.getItem("role")   
     //this.getItems();
     //this.getSore();
+    
+    
   }
   Clients:any[] = []
   getClients(){
@@ -127,6 +129,7 @@ export class InfoComponent implements OnInit {
     this.auth.getStore().subscribe(res =>{
       this.items = res
      // console.log("---",this.items);
+      console.log("--",res);
       
       for(let i = 0;i<this.items.length;i++){
         if(!this.items[i].disabled){

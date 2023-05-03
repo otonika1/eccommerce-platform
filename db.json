@@ -104,29 +104,23 @@
     }
   ],
   "userInfo": {
-    "id": 1,
+    "role": "Admin",
     "email": "admin@gmail.com",
     "password": "12345678",
-    "role": "Admin",
     "name": "Admin",
-    "balance": 997105.11
+    "lastname": 997205.11,
+    "balance": 997105.11,
+    "id": 1
   },
   "cart": [
     {
       "cartItems": [
         {
-          "name": "ტაფა",
-          "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
+          "name": "Pan",
+          "description": "Pan which will be easy to throw away",
           "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
           "author": "Admin",
           "Price": 12.99
-        },
-        {
-          "name": "თეფში",
-          "description": "თეფში რომელიც მალე გატყდება",
-          "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
-          "author": "Admin",
-          "Price": 99.99
         }
       ],
       "id": 1
@@ -143,6 +137,8 @@
           "id": 1,
           "en": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.4",
+
               "name": "Pan",
               "description": "Pan which will be easy to throw away",
               "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
@@ -152,6 +148,8 @@
           ],
           "ge": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.4",
+
               "name": "ტაფა",
               "description": "ტაფა რომელის გადაგდებაც არ დაგენანება",
               "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
@@ -164,6 +162,8 @@
           "id": 2,
           "en": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.44",
+
               "name": "Plate",
               "description": "Plate which will be break easily",
               "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
@@ -173,6 +173,8 @@
           ],
           "ge": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.44",
+
               "name": "თეფში",
               "description": "თეფში რომელიც მალე გატყდება",
               "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/hmmplant2-2.png",
@@ -185,6 +187,8 @@
           "id": 3,
           "en": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.445",
+
               "name": "Pan",
               "description": "Pan which sould be washed, with food",
               "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
@@ -194,6 +198,8 @@
           ],
           "ge": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.445",
+
               "name": "ტაფა",
               "description": "გასარეცხი ტაფა, საჭმლით",
               "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item2-img.png",
@@ -205,6 +211,8 @@
         {
           "en": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.4455",
+
               "name": "Dirty Plate",
               "description": "Plate, with tasty food",
               "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
@@ -215,6 +223,8 @@
           ],
           "ge": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.4455",
+
               "name": "ჭუჭყიანი თეფში",
               "description": "თეფში, გემრიელი საჭმლით",
               "img": "https://media.istockphoto.com/id/928925874/photo/top-view-of-empty-plate-dirty-after-the-meal-is-finished-isolate.jpg?s=612x612&w=0&k=20&c=dhJIsDdh2kh5QCtJSDlAqxtjcLxu4uqbbu_9op6DWlw=",
@@ -227,6 +237,8 @@
         {
           "en": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.44551",
+
               "name": "test",
               "description": "test",
               "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
@@ -237,6 +249,8 @@
           ],
           "ge": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.44551",
+
               "name": "ტესტ",
               "description": "ტესტი",
               "img": "https://i.pinimg.com/custom_covers/222x/636415059782460318_1594662723.jpg",
@@ -249,6 +263,8 @@
         {
           "en": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.445514",
+
               "name": "Washing Machine",
               "description": "washes dirty clothes very well",
               "img": "https://www.discounteri.ge/images/detailed/10/I75022-1.png",
@@ -259,12 +275,58 @@
           ],
           "ge": [
             {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.445514",
               "name": "საერცხის მანქანა",
               "description": "ჭუჭყიან ტანსაცმელს რეცხავს შენასნიშნავად",
               "img": "https://www.discounteri.ge/images/detailed/10/I75022-1.png",
               "Price": 590,
               "author": "Admin",
               "summery": ""
+            }
+          ]
+        },
+        {
+          "en": [
+            {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.4455145",
+
+              "name": "1",
+              "description": "1",
+              "img": "11",
+              "Price": 11,
+              "author": "1"
+            }
+          ],
+          "ge": [
+            {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.4455145",
+              "name": "1",
+              "description": "11",
+              "img": "11",
+              "Price": 11,
+              "author": "1"
+            }
+          ]
+        },
+        {
+          "en": [
+            {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.44551455312825",
+              "name": "11",
+              "description": "1",
+              "img": "1",
+              "Price": 1,
+              "author": "1"
+            }
+          ],
+          "ge": [
+            {
+              "id": "9375e324-c7fb-49f8-a8a1-884e00cf9b9d57.44551455312825",
+              "name": "1",
+              "description": "12",
+              "img": "1",
+              "Price": 1,
+              "author": "1"
             }
           ]
         }
