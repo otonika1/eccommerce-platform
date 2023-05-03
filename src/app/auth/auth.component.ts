@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, TitleStrategy } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4, validate } from 'uuid';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-auth',
@@ -78,20 +78,39 @@ export class AuthComponent implements OnInit {
   )
   noEqualPass:boolean = false;
   succesMsg:boolean =false
+  emailCheck:boolean = false;
+  passCheck:boolean = false;
+  passCheck2:boolean = false;
   //post user
   add(){
      //if passwords are equal have to be added
+     
      if(this.form.get('password')?.value == this.form.get('confirm_password')?.value){
-      if(this.form.get('email')?.valid){
+
+      if(this.form.get('email')?.value != '' || undefined && this.form.get('password')?.value != '' || undefined && this.form.get('confirm_password')?.value != '' || undefined){
         console.log(this.form.get('email')?.valid);
-        
-        this.auth.create(this.form.value).subscribe(res => {console.log(res);
-          this.noEqualPass = false;
-          this.succesMsg = true;
-          setTimeout(() => {this.succesMsg = false;},2000)
-        })
-        this.form.reset() 
-        window.location.reload()
+        if(this.form.valid){
+          this.auth.create(this.form.value).subscribe(res => {console.log(res);
+            this.noEqualPass = false;
+            this.succesMsg = true;
+            this.emailCheck =  false;
+            this.passCheck = false;
+            this.passCheck2 = false; 
+            setTimeout(() => {this.succesMsg = false;},2000)
+          })
+          this.form.reset() 
+          window.location.reload()
+        }
+      }else{
+        if(this.form.get('email')?.value == '' || undefined){
+          this.emailCheck = true;
+        }
+        if(this.form.get('password')?.value == '' || undefined){
+          this.passCheck = true;
+        }
+        if(this.form.get('confirm_password')?.value == '' || undefined){
+          this.passCheck2 = true;
+        }
       }
      }else{
         this.noEqualPass = true;
