@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable } from 'rxjs';
@@ -85,5 +85,21 @@ export class AuthService {
   //carousel
   getCarousel():Observable<Carousel[]>{
     return this.http.get<Carousel[]>(`${environment.BaseUrl}carousel`)
+  }
+
+
+  //java integration
+  Auth(obj:any):Observable<any>{
+    
+    return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj)//,{responseType:"text" as "json"}
+  }
+  getAll(token:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+  const requestOptions = { headers: headers };
+    return this.http.get<any>(`http://localhost:5005/api/client/all`,requestOptions)
   }
 }

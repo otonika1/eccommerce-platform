@@ -10,6 +10,7 @@ import { Clients } from './clients';
 })
 
 export class AdminComponent implements OnInit {
+  
   Clients:Clients[] = [];
   clone:any
   sortField:string = 'none'
@@ -32,8 +33,10 @@ export class AdminComponent implements OnInit {
   constructor(public auth:AuthService,) { }
 
   ngOnInit(): void {
-    this.getClients();
     
+    this.getClients();
+   /*  this.authh();
+    this.getAll(); */
   }
   getClients(){
     this.auth.getuser().subscribe((res:Clients[]) => {
@@ -143,4 +146,20 @@ export class AdminComponent implements OnInit {
   refreshFilter(){
     this.Clients = this.clone
   }
+
+  /* token:any
+  authh(){
+    let obj1 = {"password":"12345678","email":"oto.avloxashvili11@gmail.com"}
+    this.auth.Auth(obj1).subscribe((res:any) => {
+      console.log(res.token);
+      this.token = res.token
+    })
+  }
+  getAll(){
+    
+    this.auth.getAll(this.token).subscribe(res => {
+      console.log(res);
+      
+    })
+  } */
 }
