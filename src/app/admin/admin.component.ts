@@ -31,12 +31,12 @@ export class AdminComponent implements OnInit {
     }
   )
   constructor(public auth:AuthService,) { }
-
+  token:any
   ngOnInit(): void {
-    
+    this.token = localStorage.getItem('jwt')
     this.getClients();
-   /*  this.authh();
-    this.getAll(); */
+    //this.authh();
+    this.authh();
   }
   getClients(){
     this.auth.getuser().subscribe((res:Clients[]) => {
@@ -147,19 +147,19 @@ export class AdminComponent implements OnInit {
     this.Clients = this.clone
   }
 
-  /* token:any
+  
   authh(){
     let obj1 = {"password":"12345678","email":"oto.avloxashvili11@gmail.com"}
     this.auth.Auth(obj1).subscribe((res:any) => {
-      console.log(res.token);
-      this.token = res.token
+      localStorage.setItem('jwt', res.token);
+      this.getAll();
     })
   }
   getAll(){
     
-    this.auth.getAll(this.token).subscribe(res => {
+    this.auth.getAll().subscribe(res => {
       console.log(res);
       
     })
-  } */
+  }
 }

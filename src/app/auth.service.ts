@@ -89,17 +89,18 @@ export class AuthService {
 
 
   //java integration
+  token:any = localStorage.getItem('jwt')
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': this.token ? `Bearer ${this.token}`: ''
+  });
+  requestOptions = { headers: this.headers };
   Auth(obj:any):Observable<any>{
     
-    return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj)//,{responseType:"text" as "json"}
+    return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj)
   }
-  getAll(token:any):Observable<any>{
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-
-  const requestOptions = { headers: headers };
-    return this.http.get<any>(`http://localhost:5005/api/client/all`,requestOptions)
+  getAll():Observable<any>{
+  
+    return this.http.get<any>(`http://localhost:5005/api/client/all`,this.requestOptions)
   }
 }
