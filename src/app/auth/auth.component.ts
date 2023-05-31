@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { v4 as uuidv4, validate } from 'uuid';
 import { Observable } from 'rxjs';
+import { JwtAuthService } from '../jwt-auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -15,7 +16,7 @@ export class AuthComponent implements OnInit {
   nonExistent: boolean = false;
   login:boolean = true
   register:boolean = false
-  constructor(public auth:AuthService,private router:Router,private http:HttpClient) { }
+  constructor(public auth:AuthService,private router:Router,private http:HttpClient,public jwt:JwtAuthService) { }
   data:any
   email = new FormControl('',[Validators.email])
   password1 = new FormControl('')
@@ -44,7 +45,77 @@ export class AuthComponent implements OnInit {
     this.register = false
   }
   //login
-  save(){
+  current:any
+  jwtAuth(){
+    let obj1 = {"password":this.password1.value,"email":this.email.value}
+    console.log(obj1);
+    this.jwt.Auth(obj1).subscribe((res:any) => {
+      localStorage.setItem('jwt', res.token);
+      this.getAll();
+      this.router.navigate(['info'])
+        .then(() => {
+          window.location.reload();
+      });
+    })
+  }
+  form = new FormGroup(
+    { 
+      name:new FormControl(''),
+      lastname:new FormControl(''),
+      email: new FormControl(''),
+      password: new FormControl(''),
+      confirm_password: new FormControl(''),
+      
+    }
+  )
+  noEqualPass:boolean = false;
+  succesMsg:boolean =false
+  emailCheck:boolean = false;
+  passCheck:boolean = false;
+  passCheck2:boolean = false;
+  jwtRegistration(){
+    
+
+    if(this.form.get('password')?.value == this.form.get('confirm_password')?.value && (this.form.get('password')?.value != '' || undefined && this.form.get('confirm_password')?.value != '' || undefined) ){
+
+      if(this.form.get('email')?.value != '' || undefined && this.form.get('password')?.value != '' || undefined && this.form.get('confirm_password')?.value != '' || undefined){
+        console.log(this.form.get('email')?.valid);
+        if(this.form.valid){
+          this.jwt.registration(this.form.value).subscribe((res:any) => {
+            console.log(res);
+            setTimeout(() => {this.succesMsg = false;},2000)
+          })
+          this.form.reset() 
+          window.location.reload()
+        }
+      }else{
+        if(this.form.get('email')?.value == '' || undefined){
+          this.emailCheck = true;
+        }
+        if(this.form.get('password')?.value == '' || undefined){
+          this.passCheck = true;
+        }
+        if(this.form.get('confirm_password')?.value == '' || undefined){
+          this.passCheck2 = true;
+        }
+      }
+     }else{
+        this.noEqualPass = true;
+     }
+  }
+  getAll(){
+    this.auth.getAll().subscribe(res => {
+      this.current = res.filter((el: { email: any }) => el.email === this.email.value)
+      localStorage.setItem('currentUser', JSON.stringify(this.current[0]));
+      let user = localStorage.getItem('currentUser')
+      //console.log(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+      /* this.router.navigate(['info'])
+        .then(() => {
+          window.location.reload();
+      }); */
+    })
+  }
+  /* save(){
     for(let i of this.data){
       if(i.email == this.email.value && i.password == this.password1.value){
         var obj = {role: i.role, email: i.email, password: i.password, name:i.name,lastname:i.lastname,token:i.token, balance:i.balance, id:i.id,}
@@ -63,8 +134,8 @@ export class AuthComponent implements OnInit {
         this.nonExistent = true;
       }
     }
-  }
-  form = new FormGroup(
+  } */
+  /* form = new FormGroup(
     { 
       name:new FormControl(''),
       lastname:new FormControl(''),
@@ -80,7 +151,7 @@ export class AuthComponent implements OnInit {
   succesMsg:boolean =false
   emailCheck:boolean = false;
   passCheck:boolean = false;
-  passCheck2:boolean = false;
+  passCheck2:boolean = false; */
   //post user
   add(){
      //if passwords are equal have to be added
@@ -98,7 +169,7 @@ export class AuthComponent implements OnInit {
             this.passCheck2 = false; 
             setTimeout(() => {this.succesMsg = false;},2000)
           })
-          this.form.reset() 
+          //this.form.reset() 
           window.location.reload()
         }
       }else{

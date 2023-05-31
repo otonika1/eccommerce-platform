@@ -149,7 +149,7 @@ export class AdminComponent implements OnInit {
 
   
   authh(){
-    let obj1 = {"password":"12345678","email":"oto.avloxashvili11@gmail.com"}
+    let obj1 = {"password":"12345678","email":"oto.avloxashvili10@gmail.com"}
     this.auth.Auth(obj1).subscribe((res:any) => {
       localStorage.setItem('jwt', res.token);
       this.getAll();

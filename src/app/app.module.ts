@@ -8,7 +8,7 @@ import { InfoComponent } from './info/info.component';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { AngularFireModule} from '@angular/fire/compat'
-import { FireService } from './fire.service';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdminComponent } from './admin/admin.component';
@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     
   ],
   exports:[TranslateModule],
-  providers: [HttpClient,FireService],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

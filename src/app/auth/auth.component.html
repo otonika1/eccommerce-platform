@@ -24,7 +24,7 @@
                 </div>
                 <span class="text-danger"  *ngIf="nonExistent">{{'nonExistent' | translate}}</span>
                 <div class="mt-4">
-                    <button class="btn btn-primary" (click)="save()">{{'login' | translate}}</button>
+                    <button class="btn btn-primary" (click)="jwtAuth()">{{'login' | translate}}</button>
                 </div>
             </div>
             <div *ngIf="register" class="register mt-4" [formGroup]="form">
@@ -68,7 +68,7 @@
          
                 </div>
                 <div class="mt-4">
-                    <button class="btn btn-primary" (click)="add()">{{'save' | translate}}</button>
+                    <button class="btn btn-primary" (click)="jwtRegistration()">{{'save' | translate}}</button>
                 </div>
             </div>
         </div>
