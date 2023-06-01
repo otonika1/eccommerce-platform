@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Clients } from './admin/clients';
-import { Carousel } from './slider/carousel';
+import { Clients } from '../admin/clients';
+import { Carousel } from '../slider/carousel';
+
 
 @Injectable({
   providedIn: 'root'

@@ -104,13 +104,13 @@
     }
   ],
   "userInfo": {
-    "role": "Admin",
-    "email": "admin@gmail.com",
-    "password": "12345678",
-    "name": "Admin",
-    "lastname": 997205.11,
-    "balance": 997105.11,
-    "id": 1
+    "role": "",
+    "token": "",
+    "email": "",
+    "name": "",
+    "balance": 0,
+    "id": 0,
+    "lastname": ""
   },
   "cart": [
     {

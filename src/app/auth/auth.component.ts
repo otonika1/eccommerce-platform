@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, TitleStrategy } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../auth.service';
+
 import { v4 as uuidv4, validate } from 'uuid';
 import { Observable } from 'rxjs';
-import { JwtAuthService } from '../jwt-auth.service';
+import { AuthService } from '../Services/auth.service';
+import { JwtAuthService } from '../Services/jwt-auth.service';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -46,21 +48,27 @@ export class AuthComponent implements OnInit {
   }
   //login
   current:any
+ 
   jwtAuth(){
     let obj1 = {"password":this.password1.value,"email":this.email.value}
     console.log(obj1);
     this.jwt.Auth(obj1).subscribe((res:any) => {
       localStorage.setItem('jwt', res.token);
       this.getAll();
+      setTimeout(() => {this.getAll();},1000)
+      setTimeout(() => { this.router.navigate(['info']);},2000)
       this.router.navigate(['info'])
+      //localStorage.setItem('role',)
+      
+      /* this.router.navigate(['info'])
         .then(() => {
           window.location.reload();
-      });
+      }); */
     })
   }
   form = new FormGroup(
     { 
-      name:new FormControl(''),
+      firstname:new FormControl(''),
       lastname:new FormControl(''),
       email: new FormControl(''),
       password: new FormControl(''),
@@ -108,6 +116,10 @@ export class AuthComponent implements OnInit {
       this.current = res.filter((el: { email: any }) => el.email === this.email.value)
       localStorage.setItem('currentUser', JSON.stringify(this.current[0]));
       let user = localStorage.getItem('currentUser')
+      localStorage.setItem('role',this.current[0].role)
+      window.location.reload();
+      //console.log(this.current[0].role);
+      
       //console.log(JSON.parse(localStorage.getItem('currentUser') || '{}'));
       /* this.router.navigate(['info'])
         .then(() => {

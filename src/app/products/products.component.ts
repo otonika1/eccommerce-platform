@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../Services/auth.service';
 import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-products',

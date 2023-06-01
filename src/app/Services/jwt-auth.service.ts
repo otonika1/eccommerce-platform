@@ -16,7 +16,10 @@ export class JwtAuthService {
     'Authorization': this.token ? `Bearer ${this.token}`: ''
   });
   requestOptions = { headers: this.headers };
+  
+
   Auth(obj:any):Observable<any>{
+   
     return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj);
     
   }
