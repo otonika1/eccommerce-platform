@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, TitleStrategy } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { v4 as uuidv4, validate } from 'uuid';
 import { Observable } from 'rxjs';
 import { AuthService } from '../Services/auth.service';
@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
   nonExistent: boolean = false;
   login:boolean = true
   register:boolean = false
-  constructor(public auth:AuthService,private router:Router,private http:HttpClient,public jwt:JwtAuthService) { }
+  constructor(public auth:AuthService,private router:Router,private http:HttpClient,public jwt:JwtAuthService) {}
   data:any
   email = new FormControl('',[Validators.email])
   password1 = new FormControl('')
@@ -48,16 +48,19 @@ export class AuthComponent implements OnInit {
   }
   //login
   current:any
- 
+  helper = new JwtHelperService();
   jwtAuth(){
     let obj1 = {"password":this.password1.value,"email":this.email.value}
     console.log(obj1);
     this.jwt.Auth(obj1).subscribe((res:any) => {
       localStorage.setItem('jwt', res.token);
-      this.getAll();
+      this.helper.decodeToken(res.token);
+      console.log(this.helper.decodeToken(res.token));
+      
+      /* this.getAll();
       setTimeout(() => {this.getAll();},1000)
       setTimeout(() => { this.router.navigate(['info']);},2000)
-      this.router.navigate(['info'])
+      this.router.navigate(['info']) */
       //localStorage.setItem('role',)
       
       /* this.router.navigate(['info'])
