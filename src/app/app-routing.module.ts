@@ -30,6 +30,7 @@ const routes: Routes = [
     expRoles:['Admin','Editor']//only admin and editor can access this component
   }},
   {path:'editor/products',component:ProductsComponent,canActivate:[LoginGuard,RoleguardGuard]},
+  {path:'editor/products/:id',component:ProductsComponent,canActivate:[LoginGuard,RoleguardGuard]},
   {path:'employee-registration',component:EditorRegComponent,canActivate:[LoginGuard]},
   {path:'cart',component:AddToCartComponent,canActivate:[LoginGuard]},
   {path:'info/edit',component:DetailsComponent,canActivate:[LoginGuard,RoleguardGuard]},

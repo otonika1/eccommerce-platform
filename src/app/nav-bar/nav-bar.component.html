@@ -30,8 +30,8 @@
         </li>
        
         <li class="end" *ngIf="r">
-          <div *ngIf="this.current.firstName" style="max-width: 150px ;" class="me-2 name">
-            <span class="text-white">{{"Hello" | translate}}{{", " + this.current.firstName}}</span>
+          <div *ngIf="this.current.firstname" style="max-width: 150px ;" class="me-2 name">
+            <span class="text-white">{{"Hello" | translate}}{{", " + this.current.firstname}}</span>
           </div>
           <div *ngIf="this.current.balance != 0 || null" style="max-width: 150px ;" class="me-2 name">
             <span class="text-white">{{"$ "}}{{this.current.balance}}</span>

@@ -47,9 +47,9 @@
                                 {{sortField =="id" ? (sortOrder > 0 ? '↑' : '↓'):''}}
                               </span>
                             </th>
-                            <th scope="col" (click)="sortList('name')">{{'name' | translate}}
+                            <th scope="col" (click)="sortList('firstname')">{{'firstname' | translate}}
                               <span class="sortF">
-                                {{sortField =="name" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                                {{sortField =="firstname" ? (sortOrder > 0 ? '↑' : '↓'):''}}
                               </span>
                             </th>
                             <th scope="col" (click)="sortList('lastname')">{{'lastname' | translate}}
@@ -73,13 +73,13 @@
                         <tbody >
                           <tr *ngFor="let cl of Clients">
                             <th scope="row">{{cl.id}}</th>
-                            <td>{{cl.name}}</td>
+                            <td>{{cl.firstname}}</td>
                             <td>{{cl.lastname}}</td>
                             <td>{{cl.role}}</td>
                             <td>{{cl.balance + "$"}}</td>
-                            <td style="width: 150px;"><button class="btn btn-light me-2" data-toggle="modal" data-target="#exampleModal" (click)="getClientsByid(cl.id)"><span class="material-symbols-outlined">
+                            <td style="width: 150px;"><button class="btn btn-light me-2" data-toggle="modal" data-target="#exampleModal" (click)="getById(cl.id)"><span class="material-symbols-outlined">
                               edit
-                              </span></button><button (click)="delete(cl.id)" class="btn btn-light"><span class="material-symbols-outlined">
+                              </span></button><button (click)="del(cl.id)" class="btn btn-light"><span class="material-symbols-outlined">
                               delete
                               </span></button></td>
                           </tr>             
@@ -112,7 +112,7 @@
                   <label >
                       <span>{{'name' | translate}}</span>
                   </label>
-                  <input class="form-control" formControlName="name" type="text">
+                  <input class="form-control" formControlName="firstname" type="text">
               </div>
               <div class="d-flex flex-column mb-2 w-100">
                   <label >
@@ -170,7 +170,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"(click)="success = false" data-dismiss="modal">{{'close' | translate}}</button>
-        <button type="button" class="btn btn-primary" (click)="edit(Id,form.value)">{{'save_changes' | translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="editt(Id,form.value)">{{'save_changes' | translate}}</button>
       </div>
     </div>
   </div>

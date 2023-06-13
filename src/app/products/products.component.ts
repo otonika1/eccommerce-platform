@@ -13,12 +13,19 @@ export class ProductsComponent implements OnInit {
   constructor(private route:ActivatedRoute,public auth:AuthService) { }
   id:any;
   success:boolean = false;
+
   ngOnInit(): void {
-    this.id = parseInt(this.route.snapshot.queryParams["id"])
-    console.log(this.id);
-    this.producs()
+    //this.id = parseInt(this.route.snapshot.queryParams["id"])
+    this.route.paramMap.subscribe(c => {
+      this.id = +c.get('id')!;   
+    })
+    //this.producs()
+    this.getProduct();
+    
+    
   }
   arr:any[] = []
+  arr2:any[] = []
   obj!:obj
   producs(){
     this.auth.getStorebyId(this.id).subscribe( (res:any) => {
@@ -51,17 +58,32 @@ export class ProductsComponent implements OnInit {
   sortOrder = 0
   reg:boolean = false;
   table:boolean = true;
-  form = new FormGroup(
+  
+  form2 = new FormGroup(
     { 
-      id: new FormControl(uuidv4() + Math.random() *100),
+      
       name:new FormControl(''),
       name_geo:new FormControl(''),
       description:new FormControl(''),
       description_geo:new FormControl(''),
       img:new FormControl(''),
-      Price:new FormControl(),
-      author:new FormControl(''),
-      summery_en:new FormControl(''),
+      price:new FormControl(),
+      author:new FormControl(localStorage.getItem('author')),
+      summery:new FormControl(''),
+      summery_geo:new FormControl(''),
+    }
+  )
+  form = new FormGroup(
+    { 
+      
+      name:new FormControl(''),
+      name_geo:new FormControl(''),
+      description:new FormControl(''),
+      description_geo:new FormControl(''),
+      img:new FormControl(''),
+      price:new FormControl(),
+      author:new FormControl(localStorage.getItem('author')),
+      summery:new FormControl(''),
       summery_geo:new FormControl(''),
     }
   )
@@ -83,27 +105,27 @@ export class ProductsComponent implements OnInit {
   en:any[] = []
   ge:any[] = []
   successMsg:boolean = false;
-  add(){
-    //if(this.form.valid){
-      var obj1 = {id:this.form.get('id')?.value,name:this.form.get('name')?.value,description:this.form.get('description')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
-      var obj2 = {id:this.form.get('id')?.value,name:this.form.get('name_geo')?.value,description:this.form.get('description_geo')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
-      this.en.push(obj1)
-      this.ge.push(obj2)
-      var obj3 = {en:this.en,ge:this.ge}
-      this.obj.products.push(obj3)
+  // add(){
+  //   //if(this.form.valid){
+  //     var obj1 = {id:this.form.get('id')?.value,name:this.form.get('name')?.value,description:this.form.get('description')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
+  //     var obj2 = {id:this.form.get('id')?.value,name:this.form.get('name_geo')?.value,description:this.form.get('description_geo')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value}
+  //     this.en.push(obj1)
+  //     this.ge.push(obj2)
+  //     var obj3 = {en:this.en,ge:this.ge}
+  //     this.obj.products.push(obj3)
   
-      console.log(this.obj);
-      this.auth.postStorebyId(this.id, this.obj).subscribe(res=>{
-        console.log(res);
+  //     console.log(this.obj);
+  //     this.auth.postStorebyId(this.id, this.obj).subscribe(res=>{
+  //       console.log(res);
         
-      })
-      this.form.reset()
-      window.location.reload()
-      /* this.successMsg = true;
-      setTimeout(() => {this.successMsg = false;},2000) */
-    //}
+  //     })
+  //     this.form.reset()
+  //     window.location.reload()
+  //     /* this.successMsg = true;
+  //     setTimeout(() => {this.successMsg = false;},2000) */
+  //   //}
     
-  }
+  // }
   remove(index:number){
     //to delete we need index of the element from products array and then update whole array
     console.log(this.obj.products);
@@ -118,7 +140,7 @@ export class ProductsComponent implements OnInit {
     
   }
   index = 0;
-  edit(index:number){
+/*   edit(index:number){
     this.index = index;
     console.log(index);
     console.log(this.obj.products[index]);
@@ -131,15 +153,15 @@ export class ProductsComponent implements OnInit {
         description:new FormControl(this.obj.products[index].en[0].description),
         description_geo:new FormControl(this.obj.products[index].ge[0].description),
         img:new FormControl(this.obj.products[index].en[0].img),
-        Price:new FormControl(this.obj.products[index].en[0].Price),
+        price:new FormControl(this.obj.products[index].en[0].price),
         author:new FormControl(this.obj.products[index].en[0].author),
-        summery_en:new FormControl(this.obj.products[index].en[0].summery),
+        summery:new FormControl(this.obj.products[index].en[0].summery),
         summery_geo:new FormControl(this.obj.products[index].en[0].summery),
 
       })
-  }
+  } */
   success2:boolean = false;
-  saveEdit(){
+  /* saveEdit(){
       var obj1 = {name:this.form.get('name')?.value,description:this.form.get('description')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value, summery:this.form.get('summery_en')?.value}
       var obj2 = {name:this.form.get('name_geo')?.value,description:this.form.get('description_geo')?.value,img:this.form.get('img')?.value,Price:this.form.get('Price')?.value,author:this.form.get('author')?.value, summery:this.form.get('summery_geo')?.value}
       this.en.push(obj1)
@@ -153,7 +175,7 @@ export class ProductsComponent implements OnInit {
         window.location.reload();
       })
       
-  }
+  } */
   filterName = new FormControl();
   p: number = 1;
   filter(){
@@ -166,6 +188,80 @@ export class ProductsComponent implements OnInit {
   }
   refreshFilter(){
     this.arr= this.clone
+  }
+  getProduct(){
+    this.auth.getByIdStore(this.id).subscribe(res=>{
+      this.obj = res
+      this.arr = res.products
+      this.arr2 = res.products
+      for(let i = 0; i< res.products.length; i++){
+       
+        if(localStorage.getItem("lang") == "geo"){
+          this.arr[i].name = this.arr[i]?.name_geo
+          this.arr[i].description = this.arr[i]?.description_geo
+          this.arr[i].summery = this.arr[i]?.summery_geo
+        }
+        if(localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" ){
+          this.arr[i].name = this.arr[i]?.name_geo
+          this.arr[i].description = this.arr[i]?.description_geo
+          this.arr[i].summery = this.arr[i]?.summery_geo
+        }
+        
+      }
+      
+      
+    });
+  }
+  editProd(index:number){
+    this.index = index;
+    this.form = new FormGroup(
+      { 
+        
+        name:new FormControl(this.arr2[index].name),
+        name_geo:new FormControl(this.arr2[index].name_geo),
+        description:new FormControl(this.arr2[index].description),
+        description_geo:new FormControl(this.arr2[index].description),
+        img:new FormControl(this.arr2[index].img),
+        price:new FormControl(this.arr2[index].price),
+        author:new FormControl(this.arr2[index].author),
+        summery:new FormControl(this.arr2[index].summery),
+        summery_geo:new FormControl(this.arr2[index].summery_geo),
+
+      })
+  }
+  saveEdit(){
+    this.obj.products[this.index] = this.form.value;
+    console.log(this.obj.products);
+    this.auth.editStore(this.id,this.obj).subscribe(store => {
+      this.success = true;
+      setTimeout(() => {this.success = false;},2000)
+    });
+  }
+  delete(id:number) {
+    this.auth.deleteProduct(id).subscribe(res => {
+      this.getProduct();
+      this.successMsg = true;
+      setTimeout(() => {this.successMsg = false;},2000)
+    });
+  }
+  create(){    
+    let obj = this.form2.value;
+    this.auth.createProduct(this.form2.value).subscribe(res => {
+      obj = res
+      console.log(res);
+      
+    });
+    //this.arr.push(obj)
+    this.obj.products.push(obj)
+    this.auth.editStore(this.id,this.obj).subscribe(res => {
+      this.success = true;
+      this.getProduct();
+      setTimeout(() => {this.success = false;},2000)
+      console.log(res);
+      
+    });
+    
+    
   }
 }
 export interface obj{

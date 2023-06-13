@@ -7,40 +7,53 @@ import { AuthService } from '../Services/auth.service';
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
+
 export class EditorComponent implements OnInit {
   form = new FormGroup(
     { 
       name:new FormControl(''),
       name_geo:new FormControl(''),
-      emp_email:new FormControl(''),
-      password:new FormControl(''),
       products:new FormControl([]),
       category:new FormControl(''),
       disabled:new FormControl(),
-      summery_en:new FormControl(''),
+      summery:new FormControl(''),
+      summery_geo:new FormControl(''),
+    }
+  )
+  regForm = new FormGroup(
+    { 
+      name:new FormControl(''),
+      name_geo:new FormControl(''),
+      products:new FormControl([]),
+      category:new FormControl(''),
+      disabled:new FormControl(),
+      summery:new FormControl(''),
       summery_geo:new FormControl(''),
     }
   )
   items:any[] = []
   clone:any
   obj:any
+  success:boolean = false;
+  deleteSuccess:boolean = false;
   constructor(public auth:AuthService) { }
   
   ngOnInit(): void {
-    this.getSt()
+    //this.getSt()
+    this.getAll()
   }
   reg:boolean = false;
   table:boolean = true;
   addStore(){
-    if(this.form.get('emp_email')?.value?.includes("@ibsu.edu.ge")){
+    //if(this.form.get('emp_email')?.value?.includes("@ibsu.edu.ge")){
       console.log(this.form.value);
       this.auth.createStore(this.form.value).subscribe( res => {
         console.log(res);
         window.location.reload()
       })
-    }
+    //}
   }
-  getSt(){
+/*   getSt(){
     this.auth.getStore().subscribe((res:any) => {
       console.log(res);
       //this.items = res
@@ -62,7 +75,7 @@ export class EditorComponent implements OnInit {
       }
       this.clone = this.items
     })
-  }
+  } */
   sortField:string = 'none'
   sortOrder = 0
   sortList(column:string){
@@ -78,37 +91,35 @@ export class EditorComponent implements OnInit {
       1: (<any>a)[this.sortField] < (<any>b)[this.sortField]?-1:0)
     )
   }
-  success:boolean = false;
+  
   remove(id:number){
     this.auth.deleteStore(id).subscribe((res:any) =>{console.log(res);
       window.location.reload()
     })
   }
   id:any
-  categ = ["Technic","Household","Food"]
+  categ = ["Technic","Household","Food","Other"]
   edit(id:number,index:number){
     this.form = new FormGroup(
       { 
         name:new FormControl(this.obj[index].name),
         name_geo:new FormControl(this.obj[index].name_geo),
-        emp_email:new FormControl(this.obj[index].emp_email),
-        password:new FormControl(this.obj[index].password),
         products:new FormControl(this.obj[index].products),
         category:new FormControl(this.obj[index].category),
         disabled:new FormControl(this.obj[index].disabled),
-        summery_en:new FormControl(this.obj[index].summery_en),
+        summery:new FormControl(this.obj[index].summery),
         summery_geo:new FormControl(this.obj[index].summery_geo),
       }
     )
     console.log(this.form.value);
     this.id = id
   }
-  editStore(){
+  /* editStore(){
     this.auth.postStorebyId(this.id, this.form.value).subscribe(res=>{
       console.log(res);
       window.location.reload();
     })
-  }
+  } */
   filterid = new FormControl();
   p: number = 1;
   filter(){
@@ -121,5 +132,49 @@ export class EditorComponent implements OnInit {
   }
   refreshFilter(){
     this.items = this.clone
+  }
+  getAll(){
+    this.auth.getAllStore().subscribe(res=>{
+      console.log("items",res);
+      this.items = res
+      this.obj = res
+      for(let i = 0; i< res.length; i++){
+       
+        if(localStorage.getItem("lang") == "geo"){
+          this.items[i].name = this.items[i].name_geo
+          this.items[i].description = this.items[i].description_geo
+        }
+        if(localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" ){
+          this.items[i].name = this.items[i].name_geo
+          this.items[i].description = this.items[i].description_geo
+        }
+        
+      }
+    });
+  }
+  create(){
+    this.auth.createSt(this.regForm.value).subscribe(res => {
+      this.getAll();
+      
+    });
+  }
+  editSt(){
+    this.auth.editStore(this.id, this.form.value).subscribe(res => {
+      //console.log(res);
+      this.getAll();
+      this.success = true;
+      setTimeout(() => {
+        this.success = false;
+      },1000)
+    })
+  }
+  delete(id:number){
+    this.auth.delStore(id).subscribe(res => {
+      this.getAll();
+      this.deleteSuccess = true;
+      setTimeout(() => {
+        this.deleteSuccess = false;
+      },1000)
+    });
   }
 }

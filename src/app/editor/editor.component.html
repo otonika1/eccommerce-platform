@@ -11,7 +11,7 @@
                 <h4 class="col-10">{{'store_reg' | translate}}</h4>
                 <button class="btn btn-dark col-2" routerLink="/info">{{'back' | translate}}</button>
               </div>
-                <div class="card-body" [formGroup]="form">
+                <div class="card-body" [formGroup]="regForm">
                     <div class="row">
                         <div class="col d-flex flex-column mb-2 w-100" >
                             <label >
@@ -26,7 +26,7 @@
                             <input class="form-control" formControlName="name_geo" type="text">
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col d-flex flex-column mb-2 w-100" >
                             <label >
                                 <span>{{'email' | translate}}</span>
@@ -34,8 +34,8 @@
                             <input class="form-control" formControlName="emp_email" placeholder="@ibsu.edu.ge" type="text">
                         </div>
                         
-                    </div>
-                    <div class="row">
+                    </div> -->
+                    <!-- <div class="row">
                         <div class="col d-flex flex-column mb-2 w-100" >
                             <label >
                                 <span>{{'password' | translate}}</span>
@@ -43,13 +43,13 @@
                             <input class="form-control" formControlName="password" type="text">
                         </div>
                         
-                    </div>
+                    </div> -->
                     <div class="row">
                       <div class="col d-flex flex-column mb-2 w-100" >
                           <label >
                               <span>{{'summery_en' | translate}}</span>
                           </label>
-                          <input class="form-control" formControlName="summery_en" type="text">
+                          <input class="form-control" formControlName="summery" type="text">
                       </div>
                       <div class="col d-flex flex-column mb-2 w-100" >
                         <label >
@@ -68,7 +68,7 @@
                       </select>
                     </div>
                     <div>
-                        <button class="btn btn-primary" (click)="addStore()">{{'add' | translate}}</button>
+                        <button class="btn btn-primary" (click)="create()">{{'add' | translate}}</button>
                     </div>
                     <div class="row">
 
@@ -104,11 +104,12 @@
                           </span>
                         </th>
                         
-                        <th scope="col" (click)="sortList('emp_email')">{{'emp_email' | translate}}
+                        <th scope="col" (click)="sortList('summery')">{{'summery' | translate}}
                           <span class="sortF">
-                            {{sortField =="emp_email" ? (sortOrder > 0 ? '↑' : '↓'):''}}
+                            {{sortField =="summery" ? (sortOrder > 0 ? '↑' : '↓'):''}}
                           </span>
                         </th>
+                        
                         <th scope="col" (click)="sortList('category')">{{'category' | translate}}
                           <span class="sortF">
                             {{sortField =="category" ? (sortOrder > 0 ? '↑' : '↓'):''}}
@@ -121,12 +122,12 @@
                       <tr *ngFor="let i of items;let j = index">
                         <th scope="row">{{i.id}}</th>
                         <td>{{i.name}}</td>
-                        <td>{{i.emp_email}}</td>
+                        <td>{{i.summery}}</td>
                         <td>{{i.category}}</td>
-                        <td style="width: 200px;"><button [routerLink]="['products']" [queryParams]="{id:i.id}" class="btn btn-light me-2"  ><span class="material-symbols-outlined">
+                        <td style="width: 200px;"><button [routerLink]="['products',i.id]"  class="btn btn-light me-2"  ><span class="material-symbols-outlined">
                           description
                           </span></button>
-                          <button (click)="remove(i.id)" class="btn btn-light me-2"><span class="material-symbols-outlined">
+                          <button (click)="delete(i.id)" class="btn btn-light me-2"><span class="material-symbols-outlined">
                           delete
                           </span></button>
                           <button (click)="edit(i.id, j)" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" ><span class="material-symbols-outlined">
@@ -172,29 +173,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col d-flex flex-column mb-2 w-100" >
-                <label >
-                    <span>{{'email' | translate}}</span>
-                </label>
-                <input class="form-control" formControlName="emp_email" type="text">
-            </div>
-            
-        </div>
-        <div class="row">
-            <div class="col d-flex flex-column mb-2 w-100" >
-                <label >
-                    <span>{{'password' | translate}}</span>
-                </label>
-                <input class="form-control" formControlName="password" type="text">
-            </div>
-            
-        </div>
-        <div class="row">
           <div class="col d-flex flex-column mb-2 w-100" >
               <label >
                   <span>{{'summery_en' | translate}}</span>
               </label>
-              <input class="form-control" formControlName="summery_en" type="text">
+              <input class="form-control" formControlName="summery" type="text">
           </div>
           <div class="col d-flex flex-column mb-2 w-100" >
             <label >
@@ -233,10 +216,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"(click)="success = false" data-dismiss="modal">{{'close' | translate}}</button>
-        <button type="button" class="btn btn-primary" (click)="editStore()">{{'save_changes' | translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="editSt()">{{'save_changes' | translate}}</button>
       </div>
     </div>
   </div>
 </div>
     
+</div>
+<div *ngIf="deleteSuccess" class="alert alert-success d-flex justify-content-center" role="alert">
+  <span style="font-weight: bold;">{{'Success' | translate}}</span>
 </div>

@@ -400,6 +400,26 @@
       "products": [],
       "category": "Household",
       "id": 5
+    },
+    {
+      "name": "",
+      "name_geo": "",
+      "products": [],
+      "category": "",
+      "disabled": null,
+      "summery": "",
+      "summery_geo": "",
+      "id": 6
+    },
+    {
+      "name": "",
+      "name_geo": "",
+      "products": [],
+      "category": "",
+      "disabled": null,
+      "summery": "",
+      "summery_geo": "",
+      "id": 7
     }
   ],
   "history": [

@@ -100,8 +100,56 @@ export class AuthService {
     
     return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj)
   }
+  //Admin
   getAll():Observable<any>{
   
     return this.http.get<any>(`http://localhost:5005/api/client/all`,this.requestOptions)
+  }
+  getById(id:number):Observable<any>{
+  
+    return this.http.get<any>(`http://localhost:5005/api/client/${id}`,this.requestOptions)
+  }
+  edit(id:number,obj:any):Observable<any>{
+  
+    return this.http.put<any>(`http://localhost:5005/api/client/edit/${id}`,obj,this.requestOptions)
+  }
+  del(id:number):Observable<any>{
+  
+    return this.http.delete<any>(`http://localhost:5005/api/client/delete/${id}`,this.requestOptions)
+  }
+
+  //Store
+  getAllStore():Observable<any>{
+  
+    return this.http.get<any>(`http://localhost:5005/api/store/all`,this.requestOptions)
+  }
+  createSt(obj:any):Observable<any>{
+  
+    return this.http.post<any>(`http://localhost:5005/api/store/create`,obj,this.requestOptions)
+  }
+  getByIdStore(id:number):Observable<any>{
+  
+    return this.http.get<any>(`http://localhost:5005/api/store/${id}`,this.requestOptions)
+  }
+  editStore(id:number,obj:any):Observable<any>{
+  
+    return this.http.put<any>(`http://localhost:5005/api/store/edit/${id}`,obj,this.requestOptions)
+  }
+  delStore(id:number):Observable<any>{
+  
+    return this.http.delete<any>(`http://localhost:5005/api/store/delete/${id}`,this.requestOptions)
+  }
+  //Product
+  deleteProduct(id:number):Observable<any>{
+  
+    return this.http.delete<any>(`http://localhost:5005/api/products/delete/${id}`,this.requestOptions)
+  }
+  getAllProduct():Observable<any>{
+  
+    return this.http.get<any>(`http://localhost:5005/api/products/all`,this.requestOptions)
+  }
+  createProduct(obj:any):Observable<any>{
+  
+    return this.http.post<any>(`http://localhost:5005/api/products/create`,obj,this.requestOptions)
   }
 }
