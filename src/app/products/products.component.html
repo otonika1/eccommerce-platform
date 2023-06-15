@@ -140,7 +140,7 @@
                         <td>{{"..."}}</td>
                         <td>{{i.price +  " $"}}</td>
                         <td style="width: 150px;">
-                          <button (click)="editProd(j)" class="btn btn-light me-2" data-toggle="modal" data-target="#exampleModal" >
+                          <button (click)="editProd(j, i.id)" class="btn btn-light me-2" data-toggle="modal" data-target="#exampleModal" >
                             <span class="material-symbols-outlined">
                             edit
                             </span>
@@ -250,6 +250,8 @@
       </div>
     </div>
   </div>
-<div *ngIf="successMsg" class="alert alert-success d-flex justify-content-center" role="alert">
+</div>
+
+<div *ngIf="successMsg" class="a alert alert-success d-flex justify-content-center" role="alert">
     <span style="font-weight: bold;">{{'Success' | translate}}</span>
 </div>

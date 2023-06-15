@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit {
   constructor(private route:ActivatedRoute,public auth:AuthService) { }
   id:any;
   success:boolean = false;
-
+  productId!:number
   ngOnInit(): void {
     //this.id = parseInt(this.route.snapshot.queryParams["id"])
     this.route.paramMap.subscribe(c => {
@@ -212,7 +212,7 @@ export class ProductsComponent implements OnInit {
       
     });
   }
-  editProd(index:number){
+  editProd(index:number, id:number) {
     this.index = index;
     this.form = new FormGroup(
       { 
@@ -228,14 +228,22 @@ export class ProductsComponent implements OnInit {
         summery_geo:new FormControl(this.arr2[index].summery_geo),
 
       })
+      this.productId = id
+      
   }
   saveEdit(){
-    this.obj.products[this.index] = this.form.value;
+   /*  this.obj.products[this.index] = this.form.value;
     console.log(this.obj.products);
     this.auth.editStore(this.id,this.obj).subscribe(store => {
       this.success = true;
       setTimeout(() => {this.success = false;},2000)
-    });
+    }); */
+    this.auth.editProduct(this.productId,this.form.value).subscribe((res) => {
+      console.log(res);
+      this.getProduct();
+      this.success = true;
+      setTimeout(() => {this.success = false;},2000)
+    })
   }
   delete(id:number) {
     this.auth.deleteProduct(id).subscribe(res => {
@@ -246,17 +254,17 @@ export class ProductsComponent implements OnInit {
   }
   create(){    
     let obj = this.form2.value;
-    this.auth.createProduct(this.form2.value).subscribe(res => {
+    /* this.auth.createProduct(this.form2.value).subscribe(res => {
       obj = res
       console.log(res);
       
-    });
+    }); */
     //this.arr.push(obj)
     this.obj.products.push(obj)
     this.auth.editStore(this.id,this.obj).subscribe(res => {
-      this.success = true;
       this.getProduct();
-      setTimeout(() => {this.success = false;},2000)
+      this.successMsg = true;
+      setTimeout(() => {this.successMsg = false;},2000)
       console.log(res);
       
     });

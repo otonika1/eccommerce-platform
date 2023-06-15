@@ -68,4 +68,4 @@
     
   </nav>
 
-  
+  <app-alert-modal [error]="sessionExpiredMsg" *ngIf="sessionExpiredMsg" (close)="sessionExpiredMsg = null"></app-alert-modal>

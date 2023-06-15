@@ -148,6 +148,10 @@ export class AuthService {
   
     return this.http.get<any>(`http://localhost:5005/api/products/all`,this.requestOptions)
   }
+  editProduct(id:number,obj:any):Observable<any>{
+  
+    return this.http.put<any>(`http://localhost:5005/api/products/edit/${id}`,obj,this.requestOptions)
+  }
   createProduct(obj:any):Observable<any>{
   
     return this.http.post<any>(`http://localhost:5005/api/products/create`,obj,this.requestOptions)

@@ -20,6 +20,7 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { SliderComponent } from './slider/slider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailsComponent } from './info/details/details.component';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddToCartComponent,
     SliderComponent,
     DetailsComponent,
+    AlertModalComponent,
     
   ],
   imports: [

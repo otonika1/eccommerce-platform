@@ -29,9 +29,11 @@ export class InfoComponent implements OnInit {
     this.arr = this.clone
   }
   Observable = new Observable((observer) => {
-    observer.next(this.getSore())
-    observer.complete();
-    observer.next(this.getClients())
+    //observer.next(this.getSore())
+    //observer.complete();
+    //observer.next(this.getClients())
+    //observer.complete();
+    observer.next(this.getAll())
     observer.complete();
   })
   ngOnInit(): void {
@@ -44,20 +46,20 @@ export class InfoComponent implements OnInit {
     
   }
   Clients:any[] = []
-  getClients(){
+/*   getClients(){
     this.auth.getuser().subscribe((res:any) => {
       
       //console.log(res);
       this.Clients = res
       this.clone = res
     })
-  }
+  } */
   changeLg(lg:any){
     localStorage.setItem("lang",lg.value)
     //console.log(lg.value);
     window.location.reload()
   }
-  getItems(){
+/*   getItems(){
     this.auth.getStoreItems().subscribe( (res:any) => {
       
       for(let i = 0; i< res.length; i++){
@@ -81,7 +83,7 @@ export class InfoComponent implements OnInit {
         }
       }
     })
-  }
+  } */
 
   CurrUserName:string | undefined
   r:string | undefined
@@ -92,7 +94,7 @@ export class InfoComponent implements OnInit {
   lastname:string | undefined
   succesMsg:boolean =false
   dangerMsg:boolean =false
-  Pay(g:number)
+/*   Pay(g:number)
   {
     this.auth.getCurrentUser().subscribe( (res:any) => {
       this.CurrUserName = res.name;
@@ -120,12 +122,12 @@ export class InfoComponent implements OnInit {
           setTimeout(() => {this.dangerMsg = false;},2000)
       }
     })
-  }
+  } */
 
   items:any
   items2:any
   arr2:any
-  getSore(){
+/*   getSore(){
     this.auth.getStore().subscribe(res =>{
       this.items = res
      // console.log("---",this.items);
@@ -160,7 +162,7 @@ export class InfoComponent implements OnInit {
       }
       
     })
-  }
+  } */
   cartItems:any = []
   addToCart(index:number){
     
@@ -172,5 +174,11 @@ export class InfoComponent implements OnInit {
     this.succesMsg = true;
         setTimeout(() => {this.succesMsg = false;},1000)
     
+  }
+  getAll(){
+    this.auth.getAllProduct().subscribe(res => {
+      console.log(res);
+      this.arr = res
+    });
   }
 }
