@@ -64,6 +64,9 @@ export class AuthComponent implements OnInit {
   emailCheck:boolean = false;
   passCheck:boolean = false;
   passCheck2:boolean = false;
+
+  loginErrorMsg!:string
+  loginErrorImg!:string
   jwtAuth(){
     let obj1 = {"password":this.password1.value,"email":this.email.value}
     console.log(obj1);
@@ -86,7 +89,8 @@ export class AuthComponent implements OnInit {
       
     },
     (error:any) => {
-      alert("error_during_login")
+      this.loginErrorMsg = "Login Failed password or email is not valid"
+      this.loginErrorImg = "../../assets/images/images.png"
     })
   }
 

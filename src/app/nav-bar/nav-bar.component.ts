@@ -24,9 +24,9 @@ export class NavBarComponent implements OnInit {
   role:any
   current:any;
   expirationDate:any;
-
+  sessionExpiredimg:any
   sessionExpiredMsg:any;
-
+  
   ngOnInit(): void {
     this.token = localStorage.getItem('jwt')
     this.role = localStorage.getItem("role");
@@ -41,7 +41,10 @@ export class NavBarComponent implements OnInit {
       console.log("Expiration Date: ",this.helper.getTokenExpirationDate(this.token));
       setTimeout(() => {
         this.sessionExpiredMsg = "Session expired you will be redirected to login";
-        this.logout();
+        this.sessionExpiredimg = "../../assets/images/6227339.png";
+        localStorage.removeItem('jwt')
+        localStorage.removeItem('role')
+        localStorage.removeItem('currentUser')
       },this.expirationDate);
     }
   }

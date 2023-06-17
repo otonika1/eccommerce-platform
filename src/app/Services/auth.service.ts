@@ -100,7 +100,7 @@ export class AuthService {
     
     return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj)
   }
-  //Admin
+  //Users
   getAll():Observable<any>{
   
     return this.http.get<any>(`http://localhost:5005/api/client/all`,this.requestOptions)
@@ -112,6 +112,10 @@ export class AuthService {
   edit(id:number,obj:any):Observable<any>{
   
     return this.http.put<any>(`http://localhost:5005/api/client/edit/${id}`,obj,this.requestOptions)
+  }
+  pay(id:number,price:number, obj:any):Observable<any>{
+  
+    return this.http.put<any>(`http://localhost:5005/api/client/pay/${id}?price=${price}`,obj,this.requestOptions)
   }
   del(id:number):Observable<any>{
   
@@ -156,4 +160,6 @@ export class AuthService {
   
     return this.http.post<any>(`http://localhost:5005/api/products/create`,obj,this.requestOptions)
   }
+  //Carousel
+  
 }

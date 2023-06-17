@@ -14,9 +14,11 @@ export class InfoComponent implements OnInit {
   role:any
   arr: any[] = []
   clone:any
-  
+  clientId:any
   filterName = new FormControl();
   p: number = 1;
+
+  clientObj:any
   filter(){
     if(this.filterName.value.length == 0){
       this.arr = this.clone
@@ -37,13 +39,16 @@ export class InfoComponent implements OnInit {
     observer.complete();
   })
   ngOnInit(): void {
+    this.clientId = JSON.parse(localStorage.getItem('currentUser') || '{}')
+    this.clientId = this.clientId.id
+    
     this.Observable.subscribe();
     this.lang = localStorage.getItem("lang") || 'en'
     this.role = localStorage.getItem("role")   
-    //this.getItems();
-    //this.getSore();
-    
-    
+
+    this.auth.getById(this.clientId).subscribe(res => {
+      this.clientObj = res
+    });
   }
   Clients:any[] = []
 /*   getClients(){
@@ -180,5 +185,22 @@ export class InfoComponent implements OnInit {
       console.log(res);
       this.arr = res
     });
+  }
+  pay(price:number){   
+    if(this.clientObj.balance > price){
+      this.auth.pay(this.clientId,price,this.clientObj).subscribe(res => {
+        let user = JSON.parse(localStorage.getItem('currentUser') || '{}')
+        localStorage.removeItem('currentUser')
+        user.balance = res.balance
+        localStorage.setItem('currentUser', JSON.stringify(user))
+        window.location.reload()
+        this.succesMsg = true;
+        setTimeout(() => {this.succesMsg = false;},2000)
+      });
+    }
+    else{
+      this.dangerMsg = true;
+      setTimeout(() => {this.dangerMsg = false;},2000)
+    }
   }
 }

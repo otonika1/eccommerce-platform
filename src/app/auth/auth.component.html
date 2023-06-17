@@ -83,3 +83,4 @@
 </div>
 
 
+<app-alert-modal [error]="loginErrorMsg" [img]="loginErrorImg" *ngIf="loginErrorMsg" (close)="loginErrorMsg = '';loginErrorImg = ''"></app-alert-modal>

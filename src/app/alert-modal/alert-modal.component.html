@@ -2,7 +2,7 @@
 <div class="alert-box">
     
     <div class="errorMsg">
-        <img *ngIf="error" src="https://cdn-icons-png.flaticon.com/512/6227/6227339.png" alt="">
+        <img *ngIf="img" [src]="img" alt="">
         <span class="text-danger">{{error}}</span>
     </div>
     <div class="alert-box-actions text-right">
