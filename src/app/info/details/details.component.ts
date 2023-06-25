@@ -12,57 +12,79 @@ export class DetailsComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,private router:Router,private auth:AuthService) { }
   id:any;
+  lg1:any
+  lg2:any
+  clientId:any;
+  clientObj:any
+  succesMsg:boolean = false;
+  dangerMsg:boolean = false;
   ngOnInit(): void {
+    this.lg1 = localStorage.getItem("lang") == "geo"
+    this.lg2 = localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" 
+
     this.route.paramMap.subscribe(c => {
       this.id = c.get('id')!;  
       
       
     })
-    this.getSore();
+    //this.getSore();
+    this.get();
+    this.clientId = JSON.parse(localStorage.getItem('currentUser') || '{}')
+    this.clientId = this.clientId.id 
+
+    this.auth.getById(this.clientId).subscribe(res => {
+      this.clientObj = res
+    });
   }
   items:any
   arr:any[] = [];
   clone:any[] = [];
   details:any;
-  getSore(){
-    this.auth.getStore().subscribe(res =>{
-      this.items = res
-     // console.log("---",this.items);
-      console.log("--",res);
-      
-      for(let i = 0;i<this.items.length;i++){
-        if(!this.items[i].disabled){
-          //console.log("---",this.items[i]);
-          for(let j = 0;j<this.items[i].products.length;j++){
-            if(localStorage.getItem("lang") == "en"){
-    
-              this.arr.push(this.items[i].products[j].en[0])
-              this.clone = this.arr
-              //console.log(res[i].en[0]);
-            }
-            if(localStorage.getItem("lang") == "geo"){
-      
-              this.arr.push(this.items[i].products[j].ge[0])
-              this.clone = this.arr
-              //console.log(res[i].ge[0]);
-            }
-            if(localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" ){
-      
-              this.arr.push(this.items[i].products[j].ge[0])
-              this.clone = this.arr
-              //console.log(res[i].ge[0]);
-            }
-            
-            
-            
-          }
-        }
-      }
-      this.arr = this.arr.filter(el => el.id == this.id)
-      this.details = this.arr[0]
-      
-      
-      
+
+  get(){
+    this.auth.getProductById(this.id).subscribe( res => {
+      console.log(res);
+      this.details = res
     })
+  }
+  pay(price:number){   
+    if(this.clientObj.balance > price){
+      this.auth.pay(this.clientId,price,this.clientObj).subscribe(res => {
+        let user = JSON.parse(localStorage.getItem('currentUser') || '{}')
+        localStorage.removeItem('currentUser')
+        user.balance = res.balance
+        localStorage.setItem('currentUser', JSON.stringify(user))
+        window.location.reload()
+        this.succesMsg = true;
+        setTimeout(() => {this.succesMsg = false;},2000)
+      });
+    }
+    else{
+      this.dangerMsg = true;
+      setTimeout(() => {this.dangerMsg = false;},2000)
+    }
+  }
+  addToCart(id:number){
+    let obj = {}
+    this.auth.getProductById(id).subscribe(res => {
+      obj = {
+        clientId:this.clientId,
+        productId:res.id,
+        name:res.name,
+        name_geo:res.name_geo,
+        description:res.description,
+        description_geo:res.description_geo,
+        price:res.price,
+        img:res.img,
+      }
+      this.auth.createCart(obj).subscribe( res => {
+        console.log(res);
+        this.succesMsg = true;
+        setTimeout(() => {this.succesMsg = false;},2000)
+      })
+    })
+    
+    
+    
   }
 }

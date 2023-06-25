@@ -114,15 +114,7 @@
   },
   "cart": [
     {
-      "cartItems": [
-        {
-          "name": "Pan",
-          "description": "Pan which will be easy to throw away",
-          "img": "https://plantbarnyc.com/wp-content/themes/plantbar/assets/img/wall-item1-img.png",
-          "author": "Admin",
-          "Price": 12.99
-        }
-      ],
+      "cartItems": [],
       "id": 1
     }
   ],

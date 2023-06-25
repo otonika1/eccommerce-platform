@@ -17,7 +17,6 @@ export class JwtAuthService {
   });
   requestOptions = { headers: this.headers };
   helper = new JwtHelperService();
-  //private currentUserSubj = BehaviorSubject<any>
   Auth(obj:any):Observable<any>{
    
     return this.http.post<any>(`http://localhost:5005/api/v1/auth/authenticate`,obj)
@@ -26,8 +25,6 @@ export class JwtAuthService {
       let userInfo = this.helper.decodeToken(user.token);
       localStorage.setItem('role',userInfo.role);
       localStorage.setItem('currentUser', JSON.stringify(userInfo));
-      
-      //this.currentUserSubj.next(user);
     }));
     
   }

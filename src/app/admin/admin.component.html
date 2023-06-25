@@ -71,7 +71,7 @@
                           </tr>
                         </thead>
                         <tbody >
-                          <tr *ngFor="let cl of Clients">
+                          <tr *ngFor="let cl of Clients | paginate: { itemsPerPage: 8, currentPage: p }; let g = index">
                             <th scope="row">{{cl.id}}</th>
                             <td>{{cl.firstname}}</td>
                             <td>{{cl.lastname}}</td>
@@ -86,6 +86,8 @@
                         </tbody>
                       </table>
                 </div>
+                <pagination-controls class="d-flex justify-content-center" *ngIf="Clients.length > 8" (pageChange)="p = $event"></pagination-controls>
+
             </div>
         </div>
     </div>

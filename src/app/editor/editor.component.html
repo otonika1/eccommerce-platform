@@ -119,10 +119,12 @@
                       </tr>
                     </thead>
                     <tbody >
-                      <tr *ngFor="let i of items;let j = index">
+                      <tr *ngFor="let i of items | paginate: { itemsPerPage: 8, currentPage: p }; let g = index;let j = index">
                         <th scope="row">{{i.id}}</th>
-                        <td>{{i.name}}</td>
-                        <td>{{i.summery}}</td>
+                        <td *ngIf="!(lg1 || lg2)">{{i.name}}</td>
+                        <td *ngIf="lg1 || lg2">{{i.name_geo}}</td>
+                        <td *ngIf="!(lg1 || lg2)">{{i.summery}}</td>
+                        <td *ngIf="lg1 || lg2">{{i.summery_geo}}</td>
                         <td>{{i.category}}</td>
                         <td style="width: 200px;"><button [routerLink]="['products',i.id]"  class="btn btn-light me-2"  ><span class="material-symbols-outlined">
                           description
@@ -139,7 +141,9 @@
                     </tbody>
                   </table>
                 
-            </div>    
+            </div>  
+            <pagination-controls class="d-flex justify-content-center" *ngIf="items.length > 8" (pageChange)="p = $event"></pagination-controls>
+
         </div>
     </div>
     

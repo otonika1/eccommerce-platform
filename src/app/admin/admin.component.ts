@@ -10,6 +10,7 @@ import { Clients } from './clients';
 })
 
 export class AdminComponent implements OnInit {
+  p:number = 1
 
   Clients: Clients[] = [];
   clone: any

@@ -37,8 +37,12 @@ export class EditorComponent implements OnInit {
   success:boolean = false;
   deleteSuccess:boolean = false;
   constructor(public auth:AuthService) { }
-  
+  lg1:any
+  lg2:any
   ngOnInit(): void {
+    this.lg1 = localStorage.getItem("lang") == "geo"
+    this.lg2 = localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" 
+
     //this.getSt()
     this.getAll()
   }
@@ -138,18 +142,6 @@ export class EditorComponent implements OnInit {
       console.log("items",res);
       this.items = res
       this.obj = res
-      for(let i = 0; i< res.length; i++){
-       
-        if(localStorage.getItem("lang") == "geo"){
-          this.items[i].name = this.items[i].name_geo
-          this.items[i].description = this.items[i].description_geo
-        }
-        if(localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" ){
-          this.items[i].name = this.items[i].name_geo
-          this.items[i].description = this.items[i].description_geo
-        }
-        
-      }
     });
   }
   create(){

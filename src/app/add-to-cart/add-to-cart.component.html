@@ -17,7 +17,7 @@
                     </div>
                     <div class="d-flex mt-4">
                         <h5>{{'sum' | translate}}</h5>
-                        <h5 class="text-danger">{{': ' + sum2 + ' $'}}</h5>
+                        <h5 class="text-danger">{{': ' + sum + ' $'}}</h5>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,8 @@
                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                             </div>
                             <div class="col-4">
-                                <p  style="font-weight: bold;">{{i.name}}</p>
+                                <p *ngIf="!(lg1 || lg2)">{{i.name}}</p>
+                                <p *ngIf="lg1 || lg2">{{i.name_geo}}</p>
                             </div>
                             <div class="col-4">
                                 <p  style="font-weight: bold;">{{i.Price + ' $'}}</p>
@@ -53,19 +54,23 @@
                 <div style="height: 550px" class="card-body" >
                   <div *ngFor="let i of arr  | paginate: {id: 'pagination2', itemsPerPage: 3, currentPage: p }; let g = index" class="row d-flex justify-content-between align-items-center  p-4">
                     <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img
-                        [src]="i.img"
-                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        <a [routerLink]="'/info/details/'+i.productId">
+                            <img
+                            [src]="i.img"
+                            class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        </a>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
-                      <p class="lead fw-normal mb-2">{{i.name}}</p>
-                      <p><span class="text-muted">{{i.description}}</span></p>
+                        <p *ngIf="!(lg1 || lg2)">{{i.name}}</p>
+                        <p *ngIf="lg1 || lg2">{{i.name_geo}}</p>
+                        <p *ngIf="!(lg1 || lg2)"><span class="text-muted">{{i.description}}</span></p>
+                        <p *ngIf="lg1 || lg2"><span class="text-muted">{{i.description_geo}}</span></p>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h5 class="mb-0">${{i.Price}}</h5>
+                      <h5 class="mb-0">${{i.price}}</h5>
                     </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <button (click)="remove(g)" class="btn btn-light"><span class="material-symbols-outlined text-danger">
+                        <button (click)="remove(i.id)" class="btn btn-light"><span class="material-symbols-outlined text-danger">
                             delete
                             </span></button>            </div>
                   </div>
@@ -78,13 +83,8 @@
     </div>
 
 </div>
-<div *ngIf="succesMsg" class="alert alert-success d-flex justify-content-center" role="alert">
-    <span style="font-weight: bold;">{{'Success' | translate}}</span>
-</div>
-<div *ngIf="dangerMsg" class="alert alert-danger d-flex justify-content-center" role="alert">
-    <span style="font-weight: bold;">{{'not_enough' | translate}}</span>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div *ngIf="success" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -98,8 +98,18 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"(click)="success = false" data-dismiss="modal">{{'close' | translate}}</button>
-          <button type="button" class="btn btn-primary" (click)="buyAll()">{{'save_changes' | translate}}</button>
+          <button type="button" class="btn btn-primary" (click)="payAll()" >{{'save_changes' | translate}}</button>
         </div>
       </div>
     </div>
+</div>
+
+<div *ngIf="succesMsg" class="a alert alert-success d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'Success' | translate}}</span>
+</div>
+<div *ngIf="dangerMsg" class="a alert alert-danger d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'not_enough' | translate}}</span>
+</div>
+<div *ngIf="noItemsInCart" class="a alert alert-danger d-flex justify-content-center" role="alert">
+    <span style="font-weight: bold;">{{'no_items' | translate}}</span>
 </div>

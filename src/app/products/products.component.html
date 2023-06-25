@@ -132,11 +132,13 @@
                       </tr>
                     </thead>
                     <tbody >
-                      <tr *ngFor="let i of arr; let j = index">
+                      <tr *ngFor="let i of arr | paginate: { itemsPerPage: 8, currentPage: p }; let g = index; let j = index">
                         
-                        <td>{{i.name}}</td>
+                        <td *ngIf="!(lg1 || lg2)">{{i.name}}</td>
+                        <td *ngIf="lg1 || lg2">{{i.name_geo}}</td>
                         <td>{{i.author}}</td>
-                        <td>{{i.description}}</td>
+                        <td *ngIf="!(lg1 || lg2)">{{i.description}}</td>
+                        <td *ngIf="lg1 || lg2">{{i.description_geo}}</td>
                         <td>{{"..."}}</td>
                         <td>{{i.price +  " $"}}</td>
                         <td style="width: 150px;">
@@ -155,7 +157,9 @@
                     </tbody>
                   </table>
                 
-            </div>    
+            </div>  
+            <pagination-controls class="d-flex justify-content-center" *ngIf="arr.length > 8" (pageChange)="p = $event"></pagination-controls>
+
         </div>
     </div>
     
@@ -237,7 +241,7 @@
               <label >
                   <span>{{'author' | translate}}</span>
               </label>
-              <input class="form-control" formControlName="author"  type="text">
+              <input class="form-control" readonly formControlName="author"  type="text">
 
           </div>
 

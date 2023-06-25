@@ -152,6 +152,10 @@ export class AuthService {
   
     return this.http.get<any>(`http://localhost:5005/api/products/all`,this.requestOptions)
   }
+  getProductById(id:number):Observable<any>{
+  
+    return this.http.get<any>(`http://localhost:5005/api/products/${id}`,this.requestOptions)
+  }
   editProduct(id:number,obj:any):Observable<any>{
   
     return this.http.put<any>(`http://localhost:5005/api/products/edit/${id}`,obj,this.requestOptions)
@@ -161,5 +165,28 @@ export class AuthService {
     return this.http.post<any>(`http://localhost:5005/api/products/create`,obj,this.requestOptions)
   }
   //Carousel
-  
+
+
+  //History
+  getCarty():Observable<any>{
+    return this.http.get<any>(`http://localhost:5005/api/addtocart/all`,this.requestOptions)
+  }
+  getCartById(id:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5005/api/addtocart/${id}`,this.requestOptions)
+  }
+  getCartByClientId(id:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5005/api/addtocart/clientId/${id}`,this.requestOptions)
+  }
+  createCart(obj:any):Observable<any>{
+    return this.http.post<any>(`http://localhost:5005/api/addtocart/create`,obj,this.requestOptions)
+  }
+  updateCart(id:number,obj:any):Observable<any>{
+    return this.http.put<any>(`http://localhost:5005/api/addtocart/edit/${id}`,obj,this.requestOptions)
+  }
+  deleteCart(id:number):Observable<any>{
+    return this.http.delete<any>(`http://localhost:5005/api/addtocart/delete/${id}`,this.requestOptions)
+  }
+  deleteAllCart():Observable<any>{
+    return this.http.delete<any>(`http://localhost:5005/api/addtocart/deleteAll`,this.requestOptions)
+  }
 }

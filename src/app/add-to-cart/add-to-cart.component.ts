@@ -23,76 +23,83 @@ export class AddToCartComponent implements OnInit {
   sum2:number = 0;
   succesMsg:boolean = false;
   dangerMsg:boolean = false;
+
+  noItemsInCart:boolean = false;
   success:boolean = false;
   t:any;
+
+  currentClient:any;
+  currentClientId:any;
+
+  lg1:any;
+  lg2:any;
   ngOnInit(): void {
-    this.auth.getCart().subscribe((res:any) => {
-      this.arr = res[0].cartItems;
-      console.log(this.arr);
+    
+    
+    this.lg1 = localStorage.getItem("lang") == "geo"
+    this.lg2 = localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" 
+    this.currentClient = JSON.parse(localStorage.getItem('currentUser') || '{}')
+    this.currentClientId = this.currentClient.id
+    console.log(this.currentClientId);
+    this.getCart()
+    
+  }
+  getCart(){
+    this.auth.getCartByClientId(this.currentClientId).subscribe(res => {
+      //console.log(res);
+      this.arr = res
       for(let i = 0; i < this.arr.length; i++){
-        this.sum2 += this.arr[i].Price
-        this.sum2 = Math.round(this.sum2)
+        this.sum += this.arr[i].price
+        this.sum = Math.round(this.sum)
       } 
-    })
-    this.auth.getHystory().subscribe((res:any) => {
-      this.history = res
-      console.log("history",this.history);
+    
     })
   }
-  remove(index:number){
-    this.arr.splice(index,1);
-    this.auth.editCart(1,{cartItems:this.arr}).subscribe(res => {
+  remove(id:number){
+    this.auth.deleteCart(id).subscribe(res => {
       console.log(res);
-      window.location.reload()
+      this.getCart()
+      this.succesMsg = true;
+      setTimeout(() => {
+        this.succesMsg = false;
+      },2000)
     })
   }
   removeAll(){
-    this.arr.splice(0);
-    this.auth.editCart(1,{cartItems:this.arr}).subscribe(res => {
-      console.log(res);
-      window.location.reload()
+    this.auth.deleteAllCart().subscribe( () => {
+      this.getCart()
+      this.succesMsg = true;
+      alert
+      setTimeout(() => {
+        this.succesMsg = false;
+      },2000)
     })
   }
   modal(){
-    this.success = true;
+    if(this.sum > 0){
+      this.success = true;
+    }else{
+      this.noItemsInCart = true;
+      setTimeout(() => {this.noItemsInCart=false;},2000)
+    }
   }
-  
-  buyAll(){
-    this.auth.getCurrentUser().subscribe( (res:any) => {
-      this.CurrUserName = res.name;
-      this.r = res.role;
-      this.email = res.email
-      this.password = res.password
-      this.balance = res.balance;
-      this.lastname = res.balance;
-      this.id = res.id
-      
-      for(let i = 0; i < this.arr.length; i++){
-        this.sum += this.arr[i].Price
-      }
-      this.balance = Math.round((this.balance - this.sum) * 100) / 100;
+  payAll(){
+    this.auth.getById(this.currentClientId).subscribe(res => {
+      this.currentClient = res
+    });
+    if(this.currentClient.balance > this.sum && this.sum > 0){
+      this.auth.pay(this.currentClientId,this.sum,this.currentClient).subscribe(res => {
+        let user = JSON.parse(localStorage.getItem('currentUser') || '{}')
+        localStorage.removeItem('currentUser')
+        user.balance = res.balance
+        localStorage.setItem('currentUser', JSON.stringify(user))
+        this.removeAll()
+        window.location.reload()
+      })
+    }else if(this.sum > 0){
+      this.dangerMsg = true;
+      setTimeout(() => {this.dangerMsg = false;},2000)
+    }
+  }
 
-      if (this.balance > 0){
-        
-        this.auth.edituserByid(this.id,{id:this.id,email:this.email,password:this.password,role:this.r,name:this.CurrUserName,balance:this.balance,lastname:this.lastname}).subscribe((res:any) => {
-          console.log(res)
-          
-          for(let i = 0; i < this.arr.length; i++){
-            
-            this.auth.postHystory(this.arr[i]).subscribe();
-          }
-          
-          this.auth.CurrentUser({id:this.id,email:this.email,password:this.password,role:this.r,name:this.CurrUserName,balance:this.balance}).subscribe(res => {console.log(res);
-          window.location.reload()
-          this.succesMsg = true;
-          setTimeout(() => {this.succesMsg = false;},2000)
-          this.removeAll();
-          })
-        })      
-      }else{
-        this.dangerMsg = true;
-          setTimeout(() => {this.dangerMsg = false;},2000)
-      }
-    })
-  }
 }

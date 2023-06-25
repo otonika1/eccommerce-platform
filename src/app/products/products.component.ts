@@ -14,7 +14,11 @@ export class ProductsComponent implements OnInit {
   id:any;
   success:boolean = false;
   productId!:number
+  lg1:any
+  lg2:any
   ngOnInit(): void {
+    this.lg1 = localStorage.getItem("lang") == "geo"
+    this.lg2 = localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" 
     //this.id = parseInt(this.route.snapshot.queryParams["id"])
     this.route.paramMap.subscribe(c => {
       this.id = +c.get('id')!;   
@@ -189,27 +193,12 @@ export class ProductsComponent implements OnInit {
   refreshFilter(){
     this.arr= this.clone
   }
+  desc:any
   getProduct(){
     this.auth.getByIdStore(this.id).subscribe(res=>{
       this.obj = res
       this.arr = res.products
       this.arr2 = res.products
-      for(let i = 0; i< res.products.length; i++){
-       
-        if(localStorage.getItem("lang") == "geo"){
-          this.arr[i].name = this.arr[i]?.name_geo
-          this.arr[i].description = this.arr[i]?.description_geo
-          this.arr[i].summery = this.arr[i]?.summery_geo
-        }
-        if(localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" ){
-          this.arr[i].name = this.arr[i]?.name_geo
-          this.arr[i].description = this.arr[i]?.description_geo
-          this.arr[i].summery = this.arr[i]?.summery_geo
-        }
-        
-      }
-      
-      
     });
   }
   editProd(index:number, id:number) {
@@ -220,7 +209,7 @@ export class ProductsComponent implements OnInit {
         name:new FormControl(this.arr2[index].name),
         name_geo:new FormControl(this.arr2[index].name_geo),
         description:new FormControl(this.arr2[index].description),
-        description_geo:new FormControl(this.arr2[index].description),
+        description_geo:new FormControl(this.arr2[index].description_geo),
         img:new FormControl(this.arr2[index].img),
         price:new FormControl(this.arr2[index].price),
         author:new FormControl(this.arr2[index].author),

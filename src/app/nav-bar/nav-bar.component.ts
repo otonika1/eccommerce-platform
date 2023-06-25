@@ -16,7 +16,7 @@ export class NavBarComponent implements OnInit {
     translateService.use(localStorage.getItem("lang") || 'en')
   }
   token:any
-  helper = new JwtHelperService();
+  
   CurrUserName = ""
   r:any
   tokenPresent:boolean = false;
@@ -26,7 +26,7 @@ export class NavBarComponent implements OnInit {
   expirationDate:any;
   sessionExpiredimg:any
   sessionExpiredMsg:any;
-  
+  helper = new JwtHelperService();
   ngOnInit(): void {
     this.token = localStorage.getItem('jwt')
     this.role = localStorage.getItem("role");

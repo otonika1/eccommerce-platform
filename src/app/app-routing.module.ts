@@ -33,8 +33,8 @@ const routes: Routes = [
   {path:'editor/products/:id',component:ProductsComponent,canActivate:[LoginGuard,RoleguardGuard]},
   {path:'employee-registration',component:EditorRegComponent,canActivate:[LoginGuard]},
   {path:'cart',component:AddToCartComponent,canActivate:[LoginGuard]},
-  {path:'info/edit',component:DetailsComponent,canActivate:[LoginGuard,RoleguardGuard]},
-  {path:'info/edit/:id',component:DetailsComponent,canActivate:[LoginGuard,RoleguardGuard]},
+  {path:'info/details',component:DetailsComponent,canActivate:[LoginGuard,RoleguardGuard]},
+  {path:'info/details/:id',component:DetailsComponent,canActivate:[LoginGuard,RoleguardGuard]},
 
 
 
