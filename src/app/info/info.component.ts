@@ -104,14 +104,27 @@ export class InfoComponent implements OnInit {
       this.arr = res
     });
   }
-  pay(price:number){   
+  pay(price:number,id:number){   
     if(this.clientObj.balance > price){
+      this.auth.getProductById(id).subscribe(res => {
+        let obj = {
+          clientId:this.clientId,
+          productId:res.id,
+          name:res.name,
+          name_geo:res.name_geo,
+          img:res.img,
+          price:res.price
+        }
+        this.auth.createHistory(obj).subscribe(res => {
+        })
+        
+      });
       this.auth.pay(this.clientId,price,this.clientObj).subscribe(res => {
         let user = JSON.parse(localStorage.getItem('currentUser') || '{}')
         localStorage.removeItem('currentUser')
         user.balance = res.balance
         localStorage.setItem('currentUser', JSON.stringify(user))
-        window.location.reload()
+        //window.location.reload()
         this.succesMsg = true;
         setTimeout(() => {this.succesMsg = false;},2000)
       });

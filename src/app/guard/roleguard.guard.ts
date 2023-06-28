@@ -12,11 +12,10 @@ export class RoleguardGuard implements CanActivate {
     return this.isActivated(route);
   }
   private isActivated(route: ActivatedRouteSnapshot): boolean {
-    //if(localStorage.getItem('token') === 'admin123'){      
-      const roles = ['Admin','Editor'];
+      const roles = ['Admin','Editor','Client'];
       const expRoles = localStorage.getItem("role");
       const Match = roles.findIndex(role => expRoles?.indexOf(role) !== -1);
       return Match < 0 ? false : true;
-    //}
+    
   }
 }

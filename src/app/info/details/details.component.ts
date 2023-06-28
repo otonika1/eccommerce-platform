@@ -49,6 +49,19 @@ export class DetailsComponent implements OnInit {
   }
   pay(price:number){   
     if(this.clientObj.balance > price){
+      
+        let obj = {
+          clientId:this.clientId,
+          productId:this.details?.id,
+          name:this.details?.name,
+          name_geo:this.details?.name_geo,
+          img:this.details?.img,
+          price:this.details?.price
+        }
+        this.auth.createHistory(obj).subscribe(res => {
+        })
+        
+      
       this.auth.pay(this.clientId,price,this.clientObj).subscribe(res => {
         let user = JSON.parse(localStorage.getItem('currentUser') || '{}')
         localStorage.removeItem('currentUser')

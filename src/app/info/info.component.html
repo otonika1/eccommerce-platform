@@ -30,7 +30,7 @@
                             </a>
                             <ul class="product-links">
                                 <li><a [routerLink]="['/info/details',i.id]" ><i class="fa fa-search"></i></a></li>
-                                <li><a style="width: 60px;" (click)="pay(i.price)" >{{'Buy' | translate}}</a></li>
+                                <li><a style="width: 60px;" (click)="pay(i.price,i.id)" >{{'Buy' | translate}}</a></li>
                             </ul>
                         </div>
                         <div class="product-content">

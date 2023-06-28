@@ -24,7 +24,15 @@
             <div class="card mt-4" style="border: none;">
                 
                 <div class="card-body " >
-                    <h5 class="pb-2">{{'history' | translate}}</h5>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h5 class="pb-2">{{'history' | translate}}</h5>
+                        <button  class="m-4 btn btn-danger d-flex alingn-items-center justify-content-center" (click)="removeAllHistory()">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                    </div>
+                    
                     <div *ngFor="let i of history | paginate: {id: 'pagination1', itemsPerPage: 3, currentPage: t }; let g = index">
                         <div class="row">
                             <div class="col-4">
@@ -35,20 +43,22 @@
                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                             </div>
                             <div class="col-4">
-                                <p *ngIf="!(lg1 || lg2)">{{i.name}}</p>
-                                <p *ngIf="lg1 || lg2">{{i.name_geo}}</p>
+                                <p *ngIf="!(lg1 || lg2)">{{i.name.length > 8 ? i.name.slice(0, 6) + '...' : i.name}}</p>
+                                <p *ngIf="lg1 || lg2">{{i.name_geo.length > 8 ? i.name_geo.slice(0, 6) + '...' : i.name_geo}}</p>
                             </div>
                             <div class="col-4">
-                                <p  style="font-weight: bold;">{{i.Price + ' $'}}</p>
+                                <p  style="font-weight: bold;">{{i.price + ' $'}}</p>
                             </div>
                         </div>
                     </div>
                     
                 </div>
-                <pagination-controls id="pagination1" style="margin-left: -20px;"  (pageChange)="t = $event"></pagination-controls>
-
+                <pagination-controls id="pagination1" style="margin-left: -20px;" *ngIf="history.length > 3"  (pageChange)="t = $event"></pagination-controls>
+                
             </div>
+            
         </div>
+        
         <div class="col-9">
             <div  class="card rounded-3 mb-4" style="border: none;">
                 <div style="height: 550px" class="card-body" >
@@ -75,7 +85,7 @@
                             </span></button>            </div>
                   </div>
                 </div>
-                <pagination-controls id="pagination2" *ngIf="this.arr?.length > 0" class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+                <pagination-controls id="pagination2" *ngIf="this.arr?.length > 3" class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
 
               </div>
               

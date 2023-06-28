@@ -167,7 +167,7 @@ export class AuthService {
   //Carousel
 
 
-  //History
+  //AddToCart
   getCarty():Observable<any>{
     return this.http.get<any>(`http://localhost:5005/api/addtocart/all`,this.requestOptions)
   }
@@ -188,5 +188,27 @@ export class AuthService {
   }
   deleteAllCart():Observable<any>{
     return this.http.delete<any>(`http://localhost:5005/api/addtocart/deleteAll`,this.requestOptions)
+  }
+  //History
+  getHistory():Observable<any>{
+    return this.http.get<any>(`http://localhost:5005/api/history/all`,this.requestOptions)
+  }
+  getHistoryById(id:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5005/api/history/${id}`,this.requestOptions)
+  }
+  getHistoryClientId(id:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5005/api/history/clientId/${id}`,this.requestOptions)
+  }
+  createHistory(obj:any):Observable<any>{
+    return this.http.post<any>(`http://localhost:5005/api/history/create`,obj,this.requestOptions)
+  }
+  updateHistory(id:number,obj:any):Observable<any>{
+    return this.http.put<any>(`http://localhost:5005/api/history/edit/${id}`,obj,this.requestOptions)
+  }
+  deleteHistory(id:number):Observable<any>{
+    return this.http.delete<any>(`http://localhost:5005/api/history/delete/${id}`,this.requestOptions)
+  }
+  deleteAllHistory():Observable<any>{
+    return this.http.delete<any>(`http://localhost:5005/api/history/deleteAll`,this.requestOptions)
   }
 }

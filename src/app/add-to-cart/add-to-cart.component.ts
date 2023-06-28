@@ -34,14 +34,15 @@ export class AddToCartComponent implements OnInit {
   lg1:any;
   lg2:any;
   ngOnInit(): void {
-    
+    this.getHystory();
     
     this.lg1 = localStorage.getItem("lang") == "geo"
     this.lg2 = localStorage.getItem("language") == "ka" && localStorage.getItem("lang") != "geo" && localStorage.getItem("lang") != "en" 
     this.currentClient = JSON.parse(localStorage.getItem('currentUser') || '{}')
     this.currentClientId = this.currentClient.id
     console.log(this.currentClientId);
-    this.getCart()
+    this.getCart();
+    
     
   }
   getCart(){
@@ -75,6 +76,16 @@ export class AddToCartComponent implements OnInit {
       },2000)
     })
   }
+  removeAllHistory(){
+    this.auth.deleteAllHistory().subscribe( () => {
+      this.getHystory();
+      this.succesMsg = true;
+      alert
+      setTimeout(() => {
+        this.succesMsg = false;
+      },2000)
+    })
+  }
   modal(){
     if(this.sum > 0){
       this.success = true;
@@ -87,7 +98,14 @@ export class AddToCartComponent implements OnInit {
     this.auth.getById(this.currentClientId).subscribe(res => {
       this.currentClient = res
     });
+    
     if(this.currentClient.balance > this.sum && this.sum > 0){
+      this.auth.getCartByClientId(this.currentClientId).subscribe(res => {
+        for(let i = 0; i < res.length; i++){
+          this.auth.createHistory(res[i]).subscribe(res => {
+          })
+        }
+      });
       this.auth.pay(this.currentClientId,this.sum,this.currentClient).subscribe(res => {
         let user = JSON.parse(localStorage.getItem('currentUser') || '{}')
         localStorage.removeItem('currentUser')
@@ -101,5 +119,9 @@ export class AddToCartComponent implements OnInit {
       setTimeout(() => {this.dangerMsg = false;},2000)
     }
   }
-
+  getHystory(){
+    this.auth.getHistory().subscribe(res => {
+      this.history = res
+    })
+  }
 }
